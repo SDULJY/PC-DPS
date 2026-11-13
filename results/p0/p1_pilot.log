@@ -1,0 +1,841 @@
+20 jobs
+RUN venv/bin/python src/reproduce/run_inference.py --case jet_re1000_full --method sdedit --seed 0 --n-samples 16 --out results/p1/jet_re1000_full/sdedit/seed0 --normalize-target GPU 0
+RUN venv/bin/python src/reproduce/run_inference.py --case jet_re1000_full --method dps --seed 0 --n-samples 16 --out results/p1/jet_re1000_full/dps/seed0 --normalize-target GPU 1
+wrote results/p1/jet_re1000_full/sdedit/seed0/log.json
+{
+  "n": 16,
+  "rel_l2_mean": 0.0993736587733624,
+  "rel_l2_std": 0.007473397094807136,
+  "rel_l2_min": 0.08265736642001963,
+  "rel_l2_max": 0.11120109286696044,
+  "rel_l2_ensmean": 0.08126374865453807,
+  "log_spectrum_rel_error": 0.69357445680666,
+  "spectrum_tail_ratio": 5520.744681225474,
+  "vorticity_ensmean": {
+    "mean": -0.00930395807114337,
+    "var": 3.8555043922383994,
+    "std": 1.9635438350692351,
+    "skew": 0.16893085710578515,
+    "kurtosis": -1.140567627220226,
+    "min": -3.326981782913208,
+    "max": 4.085927486419678
+  },
+  "vorticity_truth": {
+    "mean": -3.717036634043325e-08,
+    "var": 4.347033579134114,
+    "std": 2.084954095210279,
+    "skew": 0.19920794057268423,
+    "kurtosis": -1.1051212060546904,
+    "min": -3.5181639194488525,
+    "max": 4.3892340660095215
+  },
+  "spread_error": {
+    "pearson": 0.23088978059005444,
+    "spearman": 0.20299541501888835,
+    "spread_skill_ratio": 0.7177092432975769,
+    "spread_mean": 0.12160232663154602,
+    "rmse": 0.1694311797618866
+  },
+  "skew_error": -0.030277083466899085,
+  "kurtosis_error": -0.035446421165535646,
+  "runtime_sec": 0.2738056182861328,
+  "final_traj_index": 16
+}
+RUN venv/bin/python src/reproduce/run_inference.py --case jet_re1000_full --method cond --seed 0 --n-samples 16 --out results/p1/jet_re1000_full/cond/seed0 --normalize-target GPU 0
+wrote results/p1/jet_re1000_full/dps/seed0/log.json
+{
+  "n": 16,
+  "rel_l2_mean": 0.04896901202064605,
+  "rel_l2_std": 0.004343191621338315,
+  "rel_l2_min": 0.040908111058349024,
+  "rel_l2_max": 0.05491907991753922,
+  "rel_l2_ensmean": 0.03654054069917324,
+  "log_spectrum_rel_error": 0.5825327541505402,
+  "spectrum_tail_ratio": 924.1151845019562,
+  "vorticity_ensmean": {
+    "mean": -0.01689929399998391,
+    "var": 4.546084928715354,
+    "std": 2.1321549964098185,
+    "skew": 0.1966209213655193,
+    "kurtosis": -1.1147492882415262,
+    "min": -3.605451822280884,
+    "max": 4.3834309577941895
+  },
+  "vorticity_truth": {
+    "mean": -3.717036634043325e-08,
+    "var": 4.347033579134114,
+    "std": 2.084954095210279,
+    "skew": 0.19920794057268423,
+    "kurtosis": -1.1051212060546904,
+    "min": -3.5181639194488525,
+    "max": 4.3892340660095215
+  },
+  "spread_error": {
+    "pearson": 0.14571249687760546,
+    "spearman": 0.17316247267285384,
+    "spread_skill_ratio": 0.8894578218460083,
+    "spread_mean": 0.06776365637779236,
+    "rmse": 0.07618535310029984
+  },
+  "skew_error": -0.00258701920716492,
+  "kurtosis_error": -0.009628082186835751,
+  "runtime_sec": 2.453385829925537,
+  "final_traj_index": -1
+}
+DONE jet_re1000_full sdedit 0 0
+RUN venv/bin/python src/reproduce/run_inference.py --case jet_re1000_full --method cfg --seed 0 --n-samples 16 --out results/p1/jet_re1000_full/cfg/seed0 --normalize-target GPU 1
+wrote results/p1/jet_re1000_full/cond/seed0/log.json
+{
+  "n": 16,
+  "rel_l2_mean": 0.022075034603046606,
+  "rel_l2_std": 0.0018729618289088513,
+  "rel_l2_min": 0.021176351935219283,
+  "rel_l2_max": 0.029025723265011044,
+  "rel_l2_ensmean": 0.013341856389399423,
+  "log_spectrum_rel_error": 0.6052198137416972,
+  "spectrum_tail_ratio": 3528.711282985993,
+  "vorticity_ensmean": {
+    "mean": 0.009084750315849988,
+    "var": 4.352490142919498,
+    "std": 2.0862622421257346,
+    "skew": 0.1983165871941279,
+    "kurtosis": -1.1054072345187012,
+    "min": -3.5058627128601074,
+    "max": 4.3903679847717285
+  },
+  "vorticity_truth": {
+    "mean": -3.717036634043325e-08,
+    "var": 4.347033579134114,
+    "std": 2.084954095210279,
+    "skew": 0.19920794057268423,
+    "kurtosis": -1.1051212060546904,
+    "min": -3.5181639194488525,
+    "max": 4.3892340660095215
+  },
+  "spread_error": {
+    "pearson": 0.10372968618006058,
+    "spearman": 0.08391432295676261,
+    "spread_skill_ratio": 1.3396698236465454,
+    "spread_mean": 0.03726580739021301,
+    "rmse": 0.02781715802848339
+  },
+  "skew_error": -0.0008913533785563366,
+  "kurtosis_error": -0.00028602846401071247,
+  "runtime_sec": 0.6002190113067627,
+  "final_traj_index": -1
+}
+DONE jet_re1000_full dps 0 0
+RUN venv/bin/python src/reproduce/run_inference.py --case eddy_re1000_full --method sdedit --seed 0 --n-samples 16 --out results/p1/eddy_re1000_full/sdedit/seed0 --field-std 1.0 --obs-file data/generated/eddy1000_ds16_full.npy --obs-run-index -1 --obs-snapshot 0 GPU 0
+wrote results/p1/eddy_re1000_full/sdedit/seed0/log.json
+{
+  "n": 16,
+  "rel_l2_mean": 0.33919859592444157,
+  "rel_l2_std": 0.011803460257064038,
+  "rel_l2_min": 0.3156142762180637,
+  "rel_l2_max": 0.3595733148736252,
+  "rel_l2_ensmean": 0.31596938100288313,
+  "log_spectrum_rel_error": 0.5663608697451223,
+  "spectrum_tail_ratio": 558.6608187094903,
+  "vorticity_ensmean": {
+    "mean": 0.011451692560967786,
+    "var": 0.3889232334874398,
+    "std": 0.6236371007945565,
+    "skew": -0.27799170530165823,
+    "kurtosis": 1.0354368686207627,
+    "min": -2.1522178649902344,
+    "max": 1.6439622640609741
+  },
+  "vorticity_truth": {
+    "mean": -2.8357476367091294e-08,
+    "var": 0.5897848188435924,
+    "std": 0.767974491010992,
+    "skew": -0.4524268682434137,
+    "kurtosis": 0.4907912803470649,
+    "min": -2.6835782527923584,
+    "max": 1.801673412322998
+  },
+  "spread_error": {
+    "pearson": 0.1622996894957502,
+    "spearman": 0.13521020912196616,
+    "spread_skill_ratio": 0.39650648832321167,
+    "spread_mean": 0.09621484577655792,
+    "rmse": 0.2426564246416092
+  },
+  "skew_error": 0.17443516294175548,
+  "kurtosis_error": 0.5446455882736978,
+  "runtime_sec": 0.261354923248291,
+  "final_traj_index": 16
+}
+wrote results/p1/jet_re1000_full/cfg/seed0/log.json
+{
+  "n": 16,
+  "rel_l2_mean": 0.022501407484191525,
+  "rel_l2_std": 0.000316344056029321,
+  "rel_l2_min": 0.022020945488361712,
+  "rel_l2_max": 0.023032055127560017,
+  "rel_l2_ensmean": 0.014755877942115117,
+  "log_spectrum_rel_error": 0.6173121907396817,
+  "spectrum_tail_ratio": 6247.080458302966,
+  "vorticity_ensmean": {
+    "mean": 0.009881278494020762,
+    "var": 4.355854633269417,
+    "std": 2.087068430423262,
+    "skew": 0.19837500726024196,
+    "kurtosis": -1.10530274145254,
+    "min": -3.503037929534912,
+    "max": 4.404903411865234
+  },
+  "vorticity_truth": {
+    "mean": -3.717036634043325e-08,
+    "var": 4.347033579134114,
+    "std": 2.084954095210279,
+    "skew": 0.19920794057268423,
+    "kurtosis": -1.1051212060546904,
+    "min": -3.5181639194488525,
+    "max": 4.3892340660095215
+  },
+  "spread_error": {
+    "pearson": 0.09340590720634348,
+    "spearman": 0.07744603346416788,
+    "spread_skill_ratio": 1.165684461593628,
+    "spread_mean": 0.03586266562342644,
+    "rmse": 0.03076532855629921
+  },
+  "skew_error": -0.0008329333124422744,
+  "kurtosis_error": -0.00018153539784959705,
+  "runtime_sec": 1.123685598373413,
+  "final_traj_index": -1
+}
+DONE jet_re1000_full cond 0 0
+RUN venv/bin/python src/reproduce/run_inference.py --case eddy_re1000_full --method dps --seed 0 --n-samples 16 --out results/p1/eddy_re1000_full/dps/seed0 --field-std 1.0 --obs-file data/generated/eddy1000_ds16_full.npy --obs-run-index -1 --obs-snapshot 0 GPU 1
+DONE eddy_re1000_full sdedit 0 0
+RUN venv/bin/python src/reproduce/run_inference.py --case eddy_re1000_full --method cond --seed 0 --n-samples 16 --out results/p1/eddy_re1000_full/cond/seed0 --field-std 1.0 --obs-file data/generated/eddy1000_ds16_full.npy --obs-run-index -1 --obs-snapshot 0 GPU 0
+wrote results/p1/eddy_re1000_full/cond/seed0/log.json
+{
+  "n": 16,
+  "rel_l2_mean": 0.1067108139564725,
+  "rel_l2_std": 0.0057072049880821365,
+  "rel_l2_min": 0.0938094517633044,
+  "rel_l2_max": 0.1183739805436283,
+  "rel_l2_ensmean": 0.08557020358848826,
+  "log_spectrum_rel_error": 0.5287603699372426,
+  "spectrum_tail_ratio": 1327.518090245373,
+  "vorticity_ensmean": {
+    "mean": -0.002597461000874546,
+    "var": 0.5796738041519991,
+    "std": 0.761363122400868,
+    "skew": -0.44395086565545244,
+    "kurtosis": 0.512639584018169,
+    "min": -2.686530828475952,
+    "max": 1.7852412462234497
+  },
+  "vorticity_truth": {
+    "mean": -2.8357476367091294e-08,
+    "var": 0.5897848188435924,
+    "std": 0.767974491010992,
+    "skew": -0.4524268682434137,
+    "kurtosis": 0.4907912803470649,
+    "min": -2.6835782527923584,
+    "max": 1.801673412322998
+  },
+  "spread_error": {
+    "pearson": 0.3817554231957199,
+    "spearman": 0.3353468980291663,
+    "spread_skill_ratio": 0.7255613207817078,
+    "spread_mean": 0.04768079146742821,
+    "rmse": 0.0657157301902771
+  },
+  "skew_error": 0.008476002587961273,
+  "kurtosis_error": 0.02184830367110413,
+  "runtime_sec": 0.6023232936859131,
+  "final_traj_index": -1
+}
+DONE jet_re1000_full cfg 0 0
+RUN venv/bin/python src/reproduce/run_inference.py --case eddy_re1000_full --method cfg --seed 0 --n-samples 16 --out results/p1/eddy_re1000_full/cfg/seed0 --field-std 1.0 --obs-file data/generated/eddy1000_ds16_full.npy --obs-run-index -1 --obs-snapshot 0 GPU 1
+wrote results/p1/eddy_re1000_full/dps/seed0/log.json
+{
+  "n": 16,
+  "rel_l2_mean": 0.2995803890423312,
+  "rel_l2_std": 0.014279258021144636,
+  "rel_l2_min": 0.27282472225971255,
+  "rel_l2_max": 0.321842228668929,
+  "rel_l2_ensmean": 0.25439977605310704,
+  "log_spectrum_rel_error": 0.568521371383194,
+  "spectrum_tail_ratio": 525.0641852017974,
+  "vorticity_ensmean": {
+    "mean": 0.022945009685486184,
+    "var": 0.5168013116673118,
+    "std": 0.7188889425128974,
+    "skew": -0.4316243290567797,
+    "kurtosis": 0.7263611282379929,
+    "min": -2.4744720458984375,
+    "max": 1.7646931409835815
+  },
+  "vorticity_truth": {
+    "mean": -2.8357476367091294e-08,
+    "var": 0.5897848188435924,
+    "std": 0.767974491010992,
+    "skew": -0.4524268682434137,
+    "kurtosis": 0.4907912803470649,
+    "min": -2.6835782527923584,
+    "max": 1.801673412322998
+  },
+  "spread_error": {
+    "pearson": 0.2964332601199452,
+    "spearman": 0.2483621845900284,
+    "spread_skill_ratio": 0.6225690841674805,
+    "spread_mean": 0.1216329038143158,
+    "rmse": 0.19537253677845
+  },
+  "skew_error": 0.020802539186633995,
+  "kurtosis_error": 0.23556984789092805,
+  "runtime_sec": 2.1389949321746826,
+  "final_traj_index": -1
+}
+DONE eddy_re1000_full cond 0 0
+RUN venv/bin/python src/reproduce/run_inference.py --case eddy_re10000_full --method sdedit --seed 0 --n-samples 16 --out results/p1/eddy_re10000_full/sdedit/seed0 --field-std 1.0 --obs-file data/generated/eddy10000_ds16_full.npy --obs-run-index -1 --obs-snapshot 0 GPU 0
+wrote results/p1/eddy_re1000_full/cfg/seed0/log.json
+{
+  "n": 16,
+  "rel_l2_mean": 0.1123202531517595,
+  "rel_l2_std": 0.005820702996768354,
+  "rel_l2_min": 0.09864806127245394,
+  "rel_l2_max": 0.12141894049249506,
+  "rel_l2_ensmean": 0.0892689807242428,
+  "log_spectrum_rel_error": 0.5342027881462137,
+  "spectrum_tail_ratio": 2250.034275146992,
+  "vorticity_ensmean": {
+    "mean": -0.002719910110485557,
+    "var": 0.5808997099946808,
+    "std": 0.7621677702413562,
+    "skew": -0.4450267066277597,
+    "kurtosis": 0.5111618357844936,
+    "min": -2.681722402572632,
+    "max": 1.7832870483398438
+  },
+  "vorticity_truth": {
+    "mean": -2.8357476367091294e-08,
+    "var": 0.5897848188435924,
+    "std": 0.767974491010992,
+    "skew": -0.4524268682434137,
+    "kurtosis": 0.4907912803470649,
+    "min": -2.6835782527923584,
+    "max": 1.801673412322998
+  },
+  "spread_error": {
+    "pearson": 0.35002923948903597,
+    "spearman": 0.31092473103700236,
+    "spread_skill_ratio": 0.7419257760047913,
+    "spread_mean": 0.050863686949014664,
+    "rmse": 0.0685563012957573
+  },
+  "skew_error": 0.0074001616156539884,
+  "kurtosis_error": 0.020370555437428717,
+  "runtime_sec": 1.1419529914855957,
+  "final_traj_index": -1
+}
+DONE eddy_re1000_full dps 0 0
+RUN venv/bin/python src/reproduce/run_inference.py --case eddy_re10000_full --method cond --seed 0 --n-samples 16 --out results/p1/eddy_re10000_full/cond/seed0 --field-std 1.0 --obs-file data/generated/eddy10000_ds16_full.npy --obs-run-index -1 --obs-snapshot 0 GPU 0
+wrote results/p1/eddy_re10000_full/sdedit/seed0/log.json
+{
+  "n": 16,
+  "rel_l2_mean": 0.32756095807784036,
+  "rel_l2_std": 0.007069219854399759,
+  "rel_l2_min": 0.316482769434095,
+  "rel_l2_max": 0.3409247558396161,
+  "rel_l2_ensmean": 0.2994280719265598,
+  "log_spectrum_rel_error": 0.6153236787199708,
+  "spectrum_tail_ratio": 59.84653918493743,
+  "vorticity_ensmean": {
+    "mean": 0.00529565485379635,
+    "var": 0.5830519858355967,
+    "std": 0.7635784084398908,
+    "skew": 0.454793425456105,
+    "kurtosis": 0.577931714921974,
+    "min": -1.9320765733718872,
+    "max": 2.506739854812622
+  },
+  "vorticity_truth": {
+    "mean": -2.723930947468034e-08,
+    "var": 0.8679333188243037,
+    "std": 0.9316293892016845,
+    "skew": 0.4483593635172529,
+    "kurtosis": 0.24071232282386967,
+    "min": -2.2739036083221436,
+    "max": 3.001264810562134
+  },
+  "spread_error": {
+    "pearson": 0.008437365109173941,
+    "spearman": -0.008502341062574064,
+    "spread_skill_ratio": 0.44913768768310547,
+    "spread_mean": 0.125289648771286,
+    "rmse": 0.27895599603652954
+  },
+  "skew_error": 0.006434061938852098,
+  "kurtosis_error": 0.33721939209810436,
+  "runtime_sec": 0.2771413326263428,
+  "final_traj_index": 16
+}
+DONE eddy_re1000_full cfg 0 0
+RUN venv/bin/python src/reproduce/run_inference.py --case eddy_re10000_full --method cfg --seed 0 --n-samples 16 --out results/p1/eddy_re10000_full/cfg/seed0 --field-std 1.0 --obs-file data/generated/eddy10000_ds16_full.npy --obs-run-index -1 --obs-snapshot 0 GPU 1
+wrote results/p1/eddy_re10000_full/cond/seed0/log.json
+{
+  "n": 16,
+  "rel_l2_mean": 0.14777376197597492,
+  "rel_l2_std": 0.005349530637456181,
+  "rel_l2_min": 0.1348216339032708,
+  "rel_l2_max": 0.15547550408984898,
+  "rel_l2_ensmean": 0.1190348737942118,
+  "log_spectrum_rel_error": 0.5380330525125229,
+  "spectrum_tail_ratio": 107.63417190253232,
+  "vorticity_ensmean": {
+    "mean": -0.0008659741638297191,
+    "var": 0.8482681757557808,
+    "std": 0.9210147532780247,
+    "skew": 0.42790027402557984,
+    "kurtosis": 0.2568148362159812,
+    "min": -2.2195956707000732,
+    "max": 2.8765251636505127
+  },
+  "vorticity_truth": {
+    "mean": -2.723930947468034e-08,
+    "var": 0.8679333188243037,
+    "std": 0.9316293892016845,
+    "skew": 0.4483593635172529,
+    "kurtosis": 0.24071232282386967,
+    "min": -2.2739036083221436,
+    "max": 3.001264810562134
+  },
+  "spread_error": {
+    "pearson": 0.26287429228268966,
+    "spearman": 0.2619459544211078,
+    "spread_skill_ratio": 0.7198511958122253,
+    "spread_mean": 0.0798288956284523,
+    "rmse": 0.11089638620615005
+  },
+  "skew_error": -0.020459089491673077,
+  "kurtosis_error": 0.01610251339211155,
+  "runtime_sec": 0.5891408920288086,
+  "final_traj_index": -1
+}
+DONE eddy_re10000_full sdedit 0 0
+RUN venv/bin/python src/reproduce/run_inference.py --case eddy_re10000_full --method dps --seed 0 --n-samples 16 --out results/p1/eddy_re10000_full/dps/seed0 --field-std 1.0 --obs-file data/generated/eddy10000_ds16_full.npy --obs-run-index -1 --obs-snapshot 0 GPU 1
+wrote results/p1/eddy_re10000_full/cfg/seed0/log.json
+{
+  "n": 16,
+  "rel_l2_mean": 0.15027763762593654,
+  "rel_l2_std": 0.006611804993585467,
+  "rel_l2_min": 0.1369202259242268,
+  "rel_l2_max": 0.16108414489783024,
+  "rel_l2_ensmean": 0.12047693983304268,
+  "log_spectrum_rel_error": 0.5335089547570618,
+  "spectrum_tail_ratio": 175.04292994673682,
+  "vorticity_ensmean": {
+    "mean": -0.0008007997211336715,
+    "var": 0.8519594926976096,
+    "std": 0.9230165181065881,
+    "skew": 0.429721119614589,
+    "kurtosis": 0.25784331012606776,
+    "min": -2.225792407989502,
+    "max": 2.8845810890197754
+  },
+  "vorticity_truth": {
+    "mean": -2.723930947468034e-08,
+    "var": 0.8679333188243037,
+    "std": 0.9316293892016845,
+    "skew": 0.4483593635172529,
+    "kurtosis": 0.24071232282386967,
+    "min": -2.2739036083221436,
+    "max": 3.001264810562134
+  },
+  "spread_error": {
+    "pearson": 0.2769933690524319,
+    "spearman": 0.27427831433602584,
+    "spread_skill_ratio": 0.7223807573318481,
+    "spread_mean": 0.08107991516590118,
+    "rmse": 0.11223985999822617
+  },
+  "skew_error": -0.018638243902663942,
+  "kurtosis_error": 0.017130987302198086,
+  "runtime_sec": 1.1328775882720947,
+  "final_traj_index": -1
+}
+DONE eddy_re10000_full cond 0 0
+RUN venv/bin/python src/reproduce/run_inference.py --case eddy_re1000_partial --method sdedit --seed 0 --n-samples 16 --out results/p1/eddy_re1000_partial/sdedit/seed0 --field-std 1.0 GPU 0
+wrote results/p1/eddy_re1000_partial/sdedit/seed0/log.json
+{
+  "n": 16,
+  "rel_l2_mean": 0.7476041139802228,
+  "rel_l2_std": 0.00898019757674773,
+  "rel_l2_min": 0.731856557556102,
+  "rel_l2_max": 0.765890532869189,
+  "rel_l2_ensmean": 0.7400307613108401,
+  "log_spectrum_rel_error": 0.6528112084746797,
+  "spectrum_tail_ratio": 504.2321560449458,
+  "vorticity_ensmean": {
+    "mean": 0.05909917280251875,
+    "var": 0.1457480331339591,
+    "std": 0.38176960739948784,
+    "skew": 1.4035116409572421,
+    "kurtosis": 3.9303607277507817,
+    "min": -1.1168553829193115,
+    "max": 1.6523807048797607
+  },
+  "vorticity_truth": {
+    "mean": -2.8357476367091294e-08,
+    "var": 0.5897848188435924,
+    "std": 0.767974491010992,
+    "skew": -0.4524268682434137,
+    "kurtosis": 0.4907912803470649,
+    "min": -2.6835782527923584,
+    "max": 1.801673412322998
+  },
+  "spread_error": {
+    "pearson": -0.012707378321095027,
+    "spearman": -0.030001113992541937,
+    "spread_skill_ratio": 0.1456492394208908,
+    "spread_mean": 0.08277606964111328,
+    "rmse": 0.5683247447013855
+  },
+  "skew_error": 1.855938509200656,
+  "kurtosis_error": 3.439569447403717,
+  "runtime_sec": 0.26790785789489746,
+  "final_traj_index": 16
+}
+DONE eddy_re10000_full cfg 0 0
+RUN venv/bin/python src/reproduce/run_inference.py --case eddy_re1000_partial --method dps --seed 0 --n-samples 16 --out results/p1/eddy_re1000_partial/dps/seed0 --field-std 1.0 GPU 1
+wrote results/p1/eddy_re10000_full/dps/seed0/log.json
+{
+  "n": 16,
+  "rel_l2_mean": 2.422943489329823,
+  "rel_l2_std": 8.468392173685308,
+  "rel_l2_min": 0.2866049048825017,
+  "rel_l2_max": 34.17937697839383,
+  "rel_l2_ensmean": 2.132466914021541,
+  "log_spectrum_rel_error": 1.3783926708425485,
+  "spectrum_tail_ratio": 64647326.391261525,
+  "vorticity_ensmean": {
+    "mean": -0.011614859799692567,
+    "var": 4.755720125026409,
+    "std": 2.1807613636128114,
+    "skew": -0.0504276325482542,
+    "kurtosis": 1.3389827653561852,
+    "min": -13.327069282531738,
+    "max": 12.13247013092041
+  },
+  "vorticity_truth": {
+    "mean": -2.723930947468034e-08,
+    "var": 0.8679333188243037,
+    "std": 0.9316293892016845,
+    "skew": 0.4483593635172529,
+    "kurtosis": 0.24071232282386967,
+    "min": -2.2739036083221436,
+    "max": 3.001264810562134
+  },
+  "spread_error": {
+    "pearson": 0.9876540978638644,
+    "spearman": 0.9752363550151948,
+    "spread_skill_ratio": 3.0506889820098877,
+    "spread_mean": 6.060708999633789,
+    "rmse": 1.9866689443588257
+  },
+  "skew_error": -0.49878699606550714,
+  "kurtosis_error": 1.0982704425323155,
+  "runtime_sec": 3.508272886276245,
+  "final_traj_index": -1
+}
+DONE eddy_re1000_partial sdedit 0 0
+RUN venv/bin/python src/reproduce/run_inference.py --case eddy_re1000_partial --method cond --seed 0 --n-samples 16 --out results/p1/eddy_re1000_partial/cond/seed0 --field-std 1.0 GPU 0
+wrote results/p1/eddy_re1000_partial/cond/seed0/log.json
+{
+  "n": 16,
+  "rel_l2_mean": 0.40789556505731966,
+  "rel_l2_std": 0.03552706063429695,
+  "rel_l2_min": 0.30182288227497756,
+  "rel_l2_max": 0.44357352110053855,
+  "rel_l2_ensmean": 0.3869874798626286,
+  "log_spectrum_rel_error": 0.5451525401561945,
+  "spectrum_tail_ratio": 513.2025157763424,
+  "vorticity_ensmean": {
+    "mean": 0.009757436382415108,
+    "var": 0.4252646899098316,
+    "std": 0.6521232168155275,
+    "skew": 0.25438623121916704,
+    "kurtosis": -0.22376217356043826,
+    "min": -1.7344269752502441,
+    "max": 1.7621955871582031
+  },
+  "vorticity_truth": {
+    "mean": -2.8357476367091294e-08,
+    "var": 0.5897848188435924,
+    "std": 0.767974491010992,
+    "skew": -0.4524268682434137,
+    "kurtosis": 0.4907912803470649,
+    "min": -2.6835782527923584,
+    "max": 1.801673412322998
+  },
+  "spread_error": {
+    "pearson": 0.6491416557299917,
+    "spearman": 0.644369474425964,
+    "spread_skill_ratio": 0.29452306032180786,
+    "spread_mean": 0.08753122389316559,
+    "rmse": 0.29719650745391846
+  },
+  "skew_error": 0.7068130994625808,
+  "kurtosis_error": -0.7145534539075031,
+  "runtime_sec": 0.5942609310150146,
+  "final_traj_index": -1
+}
+DONE eddy_re10000_full dps 0 0
+RUN venv/bin/python src/reproduce/run_inference.py --case eddy_re1000_partial --method cfg --seed 0 --n-samples 16 --out results/p1/eddy_re1000_partial/cfg/seed0 --field-std 1.0 GPU 1
+wrote results/p1/eddy_re1000_partial/dps/seed0/log.json
+{
+  "n": 16,
+  "rel_l2_mean": 0.4578475838758056,
+  "rel_l2_std": 0.05008926234446966,
+  "rel_l2_min": 0.372662948818451,
+  "rel_l2_max": 0.5288266684201363,
+  "rel_l2_ensmean": 0.3951941790624933,
+  "log_spectrum_rel_error": 0.5929754818016335,
+  "spectrum_tail_ratio": 540.641915150759,
+  "vorticity_ensmean": {
+    "mean": 0.027801644478529397,
+    "var": 0.4095175111851473,
+    "std": 0.6399355523684767,
+    "skew": 0.11492194589773766,
+    "kurtosis": -0.12893172725522462,
+    "min": -1.6236140727996826,
+    "max": 1.7655231952667236
+  },
+  "vorticity_truth": {
+    "mean": -2.8357476367091294e-08,
+    "var": 0.5897848188435924,
+    "std": 0.767974491010992,
+    "skew": -0.4524268682434137,
+    "kurtosis": 0.4907912803470649,
+    "min": -2.6835782527923584,
+    "max": 1.801673412322998
+  },
+  "spread_error": {
+    "pearson": 0.48052091210277076,
+    "spearman": 0.37291734422016004,
+    "spread_skill_ratio": 0.5690643191337585,
+    "spread_mean": 0.17271047830581665,
+    "rmse": 0.3034990429878235
+  },
+  "skew_error": 0.5673488141411513,
+  "kurtosis_error": -0.6197230076022895,
+  "runtime_sec": 3.633129835128784,
+  "final_traj_index": -1
+}
+DONE eddy_re1000_partial cond 0 0
+RUN venv/bin/python src/reproduce/run_inference.py --case eddy_re10000_partial --method sdedit --seed 0 --n-samples 16 --out results/p1/eddy_re10000_partial/sdedit/seed0 --field-std 1.0 GPU 0
+wrote results/p1/eddy_re10000_partial/sdedit/seed0/log.json
+{
+  "n": 16,
+  "rel_l2_mean": 0.6865923564080261,
+  "rel_l2_std": 0.009744524658277205,
+  "rel_l2_min": 0.6638825870958185,
+  "rel_l2_max": 0.7046417245753741,
+  "rel_l2_ensmean": 0.6757809932413951,
+  "log_spectrum_rel_error": 0.69522930506102,
+  "spectrum_tail_ratio": 70.01664366892165,
+  "vorticity_ensmean": {
+    "mean": 0.06776661169324427,
+    "var": 0.29557433650979215,
+    "std": 0.5436674870817567,
+    "skew": 1.3418404747726134,
+    "kurtosis": 4.785986027260207,
+    "min": -1.6666446924209595,
+    "max": 2.481722831726074
+  },
+  "vorticity_truth": {
+    "mean": -2.723930947468034e-08,
+    "var": 0.8679333188243037,
+    "std": 0.9316293892016845,
+    "skew": 0.4483593635172529,
+    "kurtosis": 0.24071232282386967,
+    "min": -2.2739036083221436,
+    "max": 3.001264810562134
+  },
+  "spread_error": {
+    "pearson": 0.12204513473704126,
+    "spearman": 0.08942589578645568,
+    "spread_skill_ratio": 0.18175703287124634,
+    "spread_mean": 0.11443012952804565,
+    "rmse": 0.6295774579048157
+  },
+  "skew_error": 0.8934811112553604,
+  "kurtosis_error": 4.545273704436337,
+  "runtime_sec": 0.27027368545532227,
+  "final_traj_index": 16
+}
+wrote results/p1/eddy_re1000_partial/cfg/seed0/log.json
+{
+  "n": 16,
+  "rel_l2_mean": 0.3981975765437773,
+  "rel_l2_std": 0.030761806046294568,
+  "rel_l2_min": 0.32694729063777733,
+  "rel_l2_max": 0.4332498735631579,
+  "rel_l2_ensmean": 0.3666105761509073,
+  "log_spectrum_rel_error": 0.5534738156792568,
+  "spectrum_tail_ratio": 773.6804493284293,
+  "vorticity_ensmean": {
+    "mean": -0.013947501581355937,
+    "var": 0.46749535945348675,
+    "std": 0.6837363230467478,
+    "skew": 0.11868373433535523,
+    "kurtosis": -0.2004677156435486,
+    "min": -1.745233416557312,
+    "max": 1.760614275932312
+  },
+  "vorticity_truth": {
+    "mean": -2.8357476367091294e-08,
+    "var": 0.5897848188435924,
+    "std": 0.767974491010992,
+    "skew": -0.4524268682434137,
+    "kurtosis": 0.4907912803470649,
+    "min": -2.6835782527923584,
+    "max": 1.801673412322998
+  },
+  "spread_error": {
+    "pearson": 0.6180479289683809,
+    "spearman": 0.6333250559371568,
+    "spread_skill_ratio": 0.3578844666481018,
+    "spread_mean": 0.10076150298118591,
+    "rmse": 0.28154757618904114
+  },
+  "skew_error": 0.5711106025787689,
+  "kurtosis_error": -0.6912589959906135,
+  "runtime_sec": 1.1441829204559326,
+  "final_traj_index": -1
+}
+DONE eddy_re1000_partial dps 0 0
+RUN venv/bin/python src/reproduce/run_inference.py --case eddy_re10000_partial --method dps --seed 0 --n-samples 16 --out results/p1/eddy_re10000_partial/dps/seed0 --field-std 1.0 GPU 1
+DONE eddy_re10000_partial sdedit 0 0
+RUN venv/bin/python src/reproduce/run_inference.py --case eddy_re10000_partial --method cond --seed 0 --n-samples 16 --out results/p1/eddy_re10000_partial/cond/seed0 --field-std 1.0 GPU 0
+wrote results/p1/eddy_re10000_partial/cond/seed0/log.json
+{
+  "n": 16,
+  "rel_l2_mean": 0.34185246277054226,
+  "rel_l2_std": 0.023896542486443288,
+  "rel_l2_min": 0.301816969325331,
+  "rel_l2_max": 0.38564978544604056,
+  "rel_l2_ensmean": 0.31250498382319297,
+  "log_spectrum_rel_error": 0.6102343507128432,
+  "spectrum_tail_ratio": 18.2159459044863,
+  "vorticity_ensmean": {
+    "mean": 0.0056633936183629885,
+    "var": 0.7041700622506637,
+    "std": 0.8391484149127993,
+    "skew": 0.7419152541352628,
+    "kurtosis": 1.1633732550519786,
+    "min": -2.2417867183685303,
+    "max": 2.8440752029418945
+  },
+  "vorticity_truth": {
+    "mean": -2.723930947468034e-08,
+    "var": 0.8679333188243037,
+    "std": 0.9316293892016845,
+    "skew": 0.4483593635172529,
+    "kurtosis": 0.24071232282386967,
+    "min": -2.2739036083221436,
+    "max": 3.001264810562134
+  },
+  "spread_error": {
+    "pearson": 0.5347589284865718,
+    "spearman": 0.5185415074383093,
+    "spread_skill_ratio": 0.41062599420547485,
+    "spread_mean": 0.11954917013645172,
+    "rmse": 0.29113882780075073
+  },
+  "skew_error": 0.2935558906180099,
+  "kurtosis_error": 0.922660932228109,
+  "runtime_sec": 0.5984940528869629,
+  "final_traj_index": -1
+}
+DONE eddy_re1000_partial cfg 0 0
+RUN venv/bin/python src/reproduce/run_inference.py --case eddy_re10000_partial --method cfg --seed 0 --n-samples 16 --out results/p1/eddy_re10000_partial/cfg/seed0 --field-std 1.0 GPU 1
+wrote results/p1/eddy_re10000_partial/dps/seed0/log.json
+{
+  "n": 16,
+  "rel_l2_mean": 0.4489628274291763,
+  "rel_l2_std": 0.02894701534286895,
+  "rel_l2_min": 0.41176540785648474,
+  "rel_l2_max": 0.5098913037080047,
+  "rel_l2_ensmean": 0.38305783772192425,
+  "log_spectrum_rel_error": 0.6781859309423097,
+  "spectrum_tail_ratio": 50.02122789576556,
+  "vorticity_ensmean": {
+    "mean": 0.01663382115251011,
+    "var": 0.6473710994398958,
+    "std": 0.8045937480740798,
+    "skew": 0.6733322193416019,
+    "kurtosis": 1.4356523739589306,
+    "min": -2.1941287517547607,
+    "max": 2.943140745162964
+  },
+  "vorticity_truth": {
+    "mean": -2.723930947468034e-08,
+    "var": 0.8679333188243037,
+    "std": 0.9316293892016845,
+    "skew": 0.4483593635172529,
+    "kurtosis": 0.24071232282386967,
+    "min": -2.2739036083221436,
+    "max": 3.001264810562134
+  },
+  "spread_error": {
+    "pearson": 0.28303471195542806,
+    "spearman": 0.27844238038241703,
+    "spread_skill_ratio": 0.6083773374557495,
+    "spread_mean": 0.21711036562919617,
+    "rmse": 0.3568679392337799
+  },
+  "skew_error": 0.224972855824349,
+  "kurtosis_error": 1.194940051135061,
+  "runtime_sec": 2.1489222049713135,
+  "final_traj_index": -1
+}
+wrote results/p1/eddy_re10000_partial/cfg/seed0/log.json
+{
+  "n": 16,
+  "rel_l2_mean": 0.33703312772262917,
+  "rel_l2_std": 0.02306420489979028,
+  "rel_l2_min": 0.29879854438454745,
+  "rel_l2_max": 0.3796268568005225,
+  "rel_l2_ensmean": 0.3057005440088108,
+  "log_spectrum_rel_error": 0.5244788749774533,
+  "spectrum_tail_ratio": 40.96172442431661,
+  "vorticity_ensmean": {
+    "mean": 0.0004576670277742778,
+    "var": 0.7158020331995552,
+    "std": 0.846050845516719,
+    "skew": 0.731612001159933,
+    "kurtosis": 1.084285934818836,
+    "min": -2.2387638092041016,
+    "max": 2.8354218006134033
+  },
+  "vorticity_truth": {
+    "mean": -2.723930947468034e-08,
+    "var": 0.8679333188243037,
+    "std": 0.9316293892016845,
+    "skew": 0.4483593635172529,
+    "kurtosis": 0.24071232282386967,
+    "min": -2.2739036083221436,
+    "max": 3.001264810562134
+  },
+  "spread_error": {
+    "pearson": 0.5308298179868803,
+    "spearman": 0.5208815201990468,
+    "spread_skill_ratio": 0.4248766303062439,
+    "spread_mean": 0.12100469321012497,
+    "rmse": 0.28479960560798645
+  },
+  "skew_error": 0.28325263764268005,
+  "kurtosis_error": 0.8435736119949664,
+  "runtime_sec": 1.0940072536468506,
+  "final_traj_index": -1
+}
+DONE eddy_re10000_partial cond 0 0
+DONE eddy_re10000_partial dps 0 0
+DONE eddy_re10000_partial cfg 0 0

@@ -1,0 +1,88 @@
+{
+  "stage": "p1",
+  "case": "eddy_re1000_full",
+  "regime": "eddy",
+  "re": 1000,
+  "obs": "full",
+  "method": "cond",
+  "seed": 0,
+  "n_samples": 16,
+  "snapshot": 182,
+  "run_index": -6,
+  "truth_file": "data/fields_pooled64_eddy_re_1000.npy",
+  "obs_file": "/tmp/eddy1000_full_obs.npy",
+  "hyperparameters": {
+    "field_std": 1.0,
+    "truth_std": 1.0,
+    "obs_std": 1.0,
+    "normalize_target": false,
+    "normalize_frame": false,
+    "n_diff": 64,
+    "n_corr": 2,
+    "corr_scale": 0.3,
+    "sdedit_time": 16,
+    "dps_scale": 4,
+    "dps_C": 2e-05,
+    "dps_sigma": 0.01,
+    "cfg_weight": 1.25
+  },
+  "metrics": {
+    "n": 16,
+    "rel_l2_mean": 0.1067108139564725,
+    "rel_l2_std": 0.0057072049880821365,
+    "rel_l2_min": 0.0938094517633044,
+    "rel_l2_max": 0.1183739805436283,
+    "rel_l2_ensmean": 0.08557020358848826,
+    "log_spectrum_rel_error": 0.5287603699372426,
+    "spectrum_tail_ratio": 1327.518090245373,
+    "vorticity_ensmean": {
+      "mean": -0.002597461000874546,
+      "var": 0.5796738041519991,
+      "std": 0.761363122400868,
+      "skew": -0.44395086565545244,
+      "kurtosis": 0.512639584018169,
+      "min": -2.686530828475952,
+      "max": 1.7852412462234497
+    },
+    "vorticity_truth": {
+      "mean": -2.8357476367091294e-08,
+      "var": 0.5897848188435924,
+      "std": 0.767974491010992,
+      "skew": -0.4524268682434137,
+      "kurtosis": 0.4907912803470649,
+      "min": -2.6835782527923584,
+      "max": 1.801673412322998
+    },
+    "spread_error": {
+      "pearson": 0.3817554231957199,
+      "spearman": 0.3353468980291663,
+      "spread_skill_ratio": 0.7255613207817078,
+      "spread_mean": 0.04768079146742821,
+      "rmse": 0.0657157301902771
+    },
+    "skew_error": 0.008476002587961273,
+    "kurtosis_error": 0.02184830367110413,
+    "runtime_sec": 0.5592653751373291,
+    "final_traj_index": -1
+  },
+  "outputs": [
+    "results/p0/calibration/eddy1000_full_fs1.0/samples.npz",
+    "results/p0/calibration/eddy1000_full_fs1.0/metrics.json"
+  ],
+  "timestamp": "2026-11-12T22:05:57+0800",
+  "command": "src/reproduce/run_inference.py --case eddy_re1000_full --method cond --seed 0 --n-samples 16 --run-index -6 --obs-run-index -1 --obs-snapshot 0 --snapshot 182 --field-std 1.0 --obs-file /tmp/eddy1000_full_obs.npy --out results/p0/calibration/eddy1000_full_fs1.0",
+  "env": {
+    "python": "3.12.3",
+    "platform": "Linux-6.8.0-124-generic-x86_64-with-glibc2.35",
+    "torch": "2.5.1+cu124",
+    "cuda": "12.4",
+    "cuda_available": true,
+    "gpu_count": 2,
+    "gpu_name": "NVIDIA GeForce RTX 4090"
+  },
+  "git": {
+    "qg_beta_sr": "5a236ca66f093a8e4192f7eec0cf8c54922f8274",
+    "qg_2d": "41149bca3f74c4ab61e65393b94c058f6604771f",
+    "ours": "na"
+  }
+}

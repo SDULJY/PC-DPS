@@ -1,0 +1,10 @@
+# Minimal environment actually used for this reproduction.
+# The upstream repository pins torch==1.13.1; the released checkpoints and
+# sampler code also work with torch 2.5.1+cu124, which is what we used.
+torch==2.5.1
+numpy
+scipy
+matplotlib
+pandas
+pytest
+pypdf

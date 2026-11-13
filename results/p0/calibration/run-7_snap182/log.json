@@ -1,0 +1,84 @@
+{
+  "stage": "p1",
+  "case": "jet_re1000_full",
+  "regime": "jet",
+  "re": 1000,
+  "obs": "full",
+  "method": "dps",
+  "seed": 0,
+  "n_samples": 16,
+  "snapshot": 182,
+  "run_index": -7,
+  "truth_file": "data/fields_pooled64_jet_re_1000.npy",
+  "obs_file": "data/fields_pooled64_ds16_jet_re_1000.npy",
+  "hyperparameters": {
+    "field_std": 1.3,
+    "n_diff": 64,
+    "n_corr": 2,
+    "corr_scale": 0.3,
+    "sdedit_time": 16,
+    "dps_scale": 4,
+    "dps_C": 2e-05,
+    "dps_sigma": 0.01,
+    "cfg_weight": 1.25
+  },
+  "metrics": {
+    "n": 16,
+    "rel_l2_mean": 0.320407863595084,
+    "rel_l2_std": 0.0037994009475400222,
+    "rel_l2_min": 0.31203662047707953,
+    "rel_l2_max": 0.324195834715624,
+    "rel_l2_ensmean": 0.31732703499963083,
+    "log_spectrum_rel_error": 0.586299607835276,
+    "spectrum_tail_ratio": 1335.0967401615349,
+    "vorticity_ensmean": {
+      "mean": -0.011614549872881241,
+      "var": 1.9816317985449905,
+      "std": 1.407704442894527,
+      "skew": -0.039670510868509465,
+      "kurtosis": -1.2261254394442267,
+      "min": -2.766852855682373,
+      "max": 2.4916579723358154
+    },
+    "vorticity_truth": {
+      "mean": -3.7664051433239365e-08,
+      "var": 4.205449994510581,
+      "std": 2.0507193846332514,
+      "skew": -0.05905228650730989,
+      "kurtosis": -1.2231359245119833,
+      "min": -3.9495186805725098,
+      "max": 3.5535390377044678
+    },
+    "spread_error": {
+      "pearson": 0.11519169982143869,
+      "spearman": 0.14881227360429344,
+      "spread_skill_ratio": 0.13307549059391022,
+      "spread_mean": 0.0865987092256546,
+      "rmse": 0.6507487297058105
+    },
+    "skew_error": 0.019381775638800426,
+    "kurtosis_error": -0.00298951493224342,
+    "runtime_sec": 2.048546314239502,
+    "final_traj_index": -1
+  },
+  "outputs": [
+    "results/p0/calibration/run-7_snap182/samples.npz",
+    "results/p0/calibration/run-7_snap182/metrics.json"
+  ],
+  "timestamp": "2026-11-12T21:57:33+0800",
+  "command": "src/reproduce/run_inference.py --case jet_re1000_full --method dps --seed 0 --n-samples 16 --run-index -7 --snapshot 182 --out results/p0/calibration/run-7_snap182",
+  "env": {
+    "python": "3.12.3",
+    "platform": "Linux-6.8.0-124-generic-x86_64-with-glibc2.35",
+    "torch": "2.5.1+cu124",
+    "cuda": "12.4",
+    "cuda_available": true,
+    "gpu_count": 2,
+    "gpu_name": "NVIDIA GeForce RTX 4090"
+  },
+  "git": {
+    "qg_beta_sr": "5a236ca66f093a8e4192f7eec0cf8c54922f8274",
+    "qg_2d": "41149bca3f74c4ab61e65393b94c058f6604771f",
+    "ours": "na"
+  }
+}

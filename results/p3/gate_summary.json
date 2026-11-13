@@ -1,0 +1,30 @@
+{
+  "eddy_re10000_partial": {
+    "best_lambda": 2.0,
+    "best_rel_l2": 0.43292972881842773,
+    "baseline_rel_l2": 0.4691076059866048,
+    "relative_reduction": 0.07712063651582102,
+    "tail_ratio_best": 42.47026136326581,
+    "tail_ratio_lambda0": 44.19714168110101,
+    "tail_closer_to_one": true
+  },
+  "eddy_re1000_partial": {
+    "best_lambda": 1.0,
+    "best_rel_l2": 0.48189935044170645,
+    "baseline_rel_l2": 0.5008543144690032,
+    "relative_reduction": 0.03784526454035763,
+    "tail_ratio_best": 186.2538750862076,
+    "tail_ratio_lambda0": 97.09177058509783,
+    "tail_closer_to_one": false
+  },
+  "jet_re1000_full": {
+    "best_lambda": 0.0,
+    "best_rel_l2": 0.05328327690860514,
+    "baseline_rel_l2": 0.05328327690860514,
+    "relative_reduction": 0.0,
+    "tail_ratio_best": 802.0266150846555,
+    "tail_ratio_lambda0": 802.0266150846555,
+    "tail_closer_to_one": false
+  },
+  "_gate_pass": false
+}

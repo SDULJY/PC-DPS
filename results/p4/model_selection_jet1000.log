@@ -1,0 +1,23 @@
+{
+  "case": "jet_re1000_full",
+  "true_regime": "jet",
+  "selected_regime": "jet",
+  "correct": true,
+  "results": {
+    "eddy": {
+      "heldout_rmse_mean": 2.0155367851257324,
+      "heldout_rmse_std": 0.7512105107307434,
+      "rel_l2_mean": 0.9110462353519095,
+      "n_eval": 12,
+      "n_train": 52
+    },
+    "jet": {
+      "heldout_rmse_mean": 0.9250044226646423,
+      "heldout_rmse_std": 0.16180123388767242,
+      "rel_l2_mean": 0.4991210969143193,
+      "n_eval": 12,
+      "n_train": 52
+    }
+  },
+  "report": "eddy -> beta=0; jet -> beta=2.5"
+}

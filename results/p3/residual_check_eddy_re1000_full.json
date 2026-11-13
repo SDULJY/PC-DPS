@@ -1,0 +1,27 @@
+{
+  "case": "eddy_re1000_full",
+  "snapshot": 182,
+  "dt": 0.5,
+  "beta": 0.0,
+  "nu": 0.001,
+  "mu": 0.02,
+  "rms": {
+    "dqdt": 0.2895652949810028,
+    "J": 0.2652426064014435,
+    "drag": 0.015268584713339806,
+    "diffusion": 0.01840374246239662,
+    "beta_basis": 0.33281028270721436,
+    "F": 0.10075399279594421
+  },
+  "residual_rms": 0.040844377130270004,
+  "residual_no_beta_rms": 0.040844377130270004,
+  "beta_basis_rms": 0.33281028270721436,
+  "centered_residual_rms": 0.03148149698972702,
+  "ratios": {
+    "residual_over_dqdt": 0.14105411745840807,
+    "residual_over_J": 0.15398874895799447,
+    "residual_over_terms_sum": 0.03996340371473553,
+    "centered_over_dqdt": 0.11786934239665381
+  },
+  "beta_oracle_hat": 0.0008656478603370488
+}

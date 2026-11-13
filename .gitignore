@@ -1,0 +1,23 @@
+# large / third-party / generated artifacts
+venv/
+data/
+third_party/
+weights/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+
+# per-run sample tensors (logs/CSV stay)
+results/**/*.npz
+results/**/samples.npz
+
+# submission/build artifacts
+report/*.zip
+report/checkpoint_*.zip
+report/paper_*.pdf
+report/paper.txt
+
+# OS/editor
+.DS_Store
+.vscode/

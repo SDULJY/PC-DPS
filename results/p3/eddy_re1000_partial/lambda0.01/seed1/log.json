@@ -1,0 +1,191 @@
+{
+  "stage": "p3",
+  "case": "eddy_re1000_partial",
+  "regime": "eddy",
+  "re": 1000,
+  "obs": "partial",
+  "lambda_phys": 0.01,
+  "seed": 1,
+  "n_pairs": 100,
+  "snapshot": 182,
+  "dt": 0.5,
+  "beta": 0.0,
+  "time_average": true,
+  "residual_kmax": null,
+  "physics_gap_only": true,
+  "hyperparameters": {
+    "field_std": 1.0,
+    "n_diff": 64,
+    "n_corr": 2,
+    "corr_scale": 0.3,
+    "dps_scale": 4,
+    "dps_C": 0.0001,
+    "dps_sigma": 0.01
+  },
+  "metrics": {
+    "frame0": {
+      "n": 100,
+      "rel_l2_mean": 0.5050011324886762,
+      "rel_l2_std": 0.051648356767462565,
+      "rel_l2_min": 0.40045929880064746,
+      "rel_l2_max": 0.6215564162404608,
+      "rel_l2_ensmean": 0.443522951046181,
+      "log_spectrum_rel_error": 0.5965651406417088,
+      "spectrum_tail_ratio": 157.46439797099436,
+      "vorticity_ensmean": {
+        "mean": 0.026817510692168867,
+        "var": 0.38356478946587885,
+        "std": 0.6193260768495695,
+        "skew": 0.33183399413418907,
+        "kurtosis": -0.16941763690180167,
+        "min": -1.2929517030715942,
+        "max": 1.796170711517334
+      },
+      "vorticity_truth": {
+        "mean": -2.8357476367091294e-08,
+        "var": 0.5897848188435924,
+        "std": 0.767974491010992,
+        "skew": -0.4524268682434137,
+        "kurtosis": 0.4907912803470649,
+        "min": -2.6835782527923584,
+        "max": 1.801673412322998
+      },
+      "spread_error": {
+        "pearson": 0.5377578128459414,
+        "spearman": 0.43699528401968835,
+        "spread_skill_ratio": 0.5280435681343079,
+        "spread_mean": 0.1798591911792755,
+        "rmse": 0.34061431884765625
+      },
+      "skew_error": 0.7842608623776028,
+      "kurtosis_error": -0.6602089172488665
+    },
+    "frame1": {
+      "n": 100,
+      "rel_l2_mean": 0.49763203809289785,
+      "rel_l2_std": 0.04370540063356002,
+      "rel_l2_min": 0.4068181250470423,
+      "rel_l2_max": 0.6192050904905738,
+      "rel_l2_ensmean": 0.43218491919252106,
+      "log_spectrum_rel_error": 0.5867042202898436,
+      "spectrum_tail_ratio": 46.15628957763889,
+      "vorticity_ensmean": {
+        "mean": 0.02756339929296736,
+        "var": 0.3863219337739183,
+        "std": 0.6215480140535551,
+        "skew": 0.32117859589284103,
+        "kurtosis": -0.0056584462849316175,
+        "min": -1.4566540718078613,
+        "max": 1.825619101524353
+      },
+      "vorticity_truth": {
+        "mean": -3.276124971307581e-08,
+        "var": 0.5863446466919987,
+        "std": 0.765731445542103,
+        "skew": -0.43235716257341356,
+        "kurtosis": 0.6488869808981983,
+        "min": -2.7079017162323,
+        "max": 1.8603992462158203
+      },
+      "spread_error": {
+        "pearson": 0.5085045107885611,
+        "spearman": 0.4377416030855393,
+        "spread_skill_ratio": 0.5498491525650024,
+        "spread_mean": 0.18196575343608856,
+        "rmse": 0.33093759417533875
+      },
+      "skew_error": 0.7535357584662545,
+      "kurtosis_error": -0.6545454271831299
+    },
+    "rel_l2_mean": 0.501316585290787,
+    "rel_l2_ensmean": 0.437853935119351,
+    "log_spectrum_rel_error": 0.5916346804657762,
+    "spectrum_tail_ratio": 101.81034377431662,
+    "runtime_sec": 5.071725606918335,
+    "diagnostics": [
+      {
+        "step": 1,
+        "t": 0.984375,
+        "mse": 14.06049633026123,
+        "data_score_rms": 0.015951786190271378,
+        "phys_rms": 167.41859436035156
+      },
+      {
+        "step": 8,
+        "t": 0.875,
+        "mse": 0.19831940531730652,
+        "data_score_rms": 0.013997101224958897,
+        "phys_rms": 1.6899255514144897
+      },
+      {
+        "step": 16,
+        "t": 0.75,
+        "mse": 0.15682262182235718,
+        "data_score_rms": 0.042785439640283585,
+        "phys_rms": 0.782952070236206
+      },
+      {
+        "step": 24,
+        "t": 0.625,
+        "mse": 0.06523983925580978,
+        "data_score_rms": 0.09127606451511383,
+        "phys_rms": 0.9547909498214722
+      },
+      {
+        "step": 32,
+        "t": 0.5,
+        "mse": 0.02380066178739071,
+        "data_score_rms": 0.098664790391922,
+        "phys_rms": 1.0530515909194946
+      },
+      {
+        "step": 40,
+        "t": 0.375,
+        "mse": 0.012817651964724064,
+        "data_score_rms": 0.1017126739025116,
+        "phys_rms": 0.9821620583534241
+      },
+      {
+        "step": 48,
+        "t": 0.25,
+        "mse": 0.008714071474969387,
+        "data_score_rms": 0.10906843841075897,
+        "phys_rms": 0.7533687353134155
+      },
+      {
+        "step": 56,
+        "t": 0.125,
+        "mse": 0.007490894757211208,
+        "data_score_rms": 0.12289004027843475,
+        "phys_rms": 0.6201232671737671
+      },
+      {
+        "step": 64,
+        "t": 0.0,
+        "mse": 0.0072793238796293736,
+        "data_score_rms": 0.13537687063217163,
+        "phys_rms": 0.5632463693618774
+      }
+    ]
+  },
+  "outputs": [
+    "results/p3/eddy_re1000_partial/lambda0.01/seed1/samples.npz",
+    "results/p3/eddy_re1000_partial/lambda0.01/seed1/metrics.json"
+  ],
+  "timestamp": "2026-11-12T22:19:51+0800",
+  "command": "src/pcdps/run_pcdps.py --case eddy_re1000_partial --lambda-phys 0.01 --seed 1 --n-pairs 100 --field-std 1.0 --run-index -6 --snapshot 182 --dps-c 0.0001 --out results/p3/eddy_re1000_partial/lambda0.01/seed1 --physics-gap-only",
+  "env": {
+    "python": "3.12.3",
+    "platform": "Linux-6.8.0-124-generic-x86_64-with-glibc2.35",
+    "torch": "2.5.1+cu124",
+    "cuda": "12.4",
+    "cuda_available": true,
+    "gpu_count": 1,
+    "gpu_name": "NVIDIA GeForce RTX 4090"
+  },
+  "git": {
+    "qg_beta_sr": "5a236ca66f093a8e4192f7eec0cf8c54922f8274",
+    "qg_2d": "41149bca3f74c4ab61e65393b94c058f6604771f",
+    "ours": "na"
+  }
+}

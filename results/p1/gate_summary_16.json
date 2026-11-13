@@ -1,0 +1,14 @@
+{
+  "n_cases": 6,
+  "n_cases_all_methods_within_10pct": 1,
+  "case_gate": {
+    "eddy_re10000_full": true,
+    "eddy_re10000_partial": false,
+    "eddy_re1000_full": false,
+    "eddy_re1000_partial": false,
+    "jet_re1000_full": false,
+    "jet_re1000_partial": false
+  },
+  "method_pass_rate": 0.5833333333333334,
+  "gate_pass": false
+}

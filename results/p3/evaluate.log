@@ -1,0 +1,33 @@
+                case  lambda  n  rel_l2_mean  rel_l2_std  rel_l2_ensmean  log_spectrum_rel_error  spectrum_tail_ratio  rel_reduction_vs_lambda0  tail_distance_to_one
+eddy_re10000_partial    0.00  3     0.469108    0.001906        0.403734                0.742100            44.197142                  0.000000             43.197142
+eddy_re10000_partial    0.01  3     0.468663    0.001924        0.403805                0.742038            44.204635                  0.000947             43.204635
+eddy_re10000_partial    0.10  3     0.465325    0.001875        0.403669                0.741694            44.211358                  0.008063             43.211358
+eddy_re10000_partial    0.50  3     0.454975    0.002022        0.400579                0.742218            44.123411                  0.030126             43.123411
+eddy_re10000_partial    1.00  3     0.445550    0.002044        0.394794                0.744105            43.630740                  0.050219             42.630740
+ eddy_re1000_partial    0.00  3     0.500854    0.003972        0.436904                0.592890            97.091771                  0.000000             96.091771
+ eddy_re1000_partial    0.01  3     0.500081    0.003827        0.437020                0.592731            97.809597                  0.001544             96.809597
+ eddy_re1000_partial    0.10  3     0.493777    0.003581        0.436788                0.591417           105.011441                  0.014130            104.011441
+ eddy_re1000_partial    0.50  3     0.483641    0.003506        0.438517                0.589869           143.635362                  0.034368            142.635362
+ eddy_re1000_partial    1.00  3     0.481899    0.004010        0.442337                0.590304           186.253875                  0.037845            185.253875
+{
+  "eddy_re10000_partial": {
+    "best_lambda": 1.0,
+    "best_rel_l2": 0.4455496526652485,
+    "baseline_rel_l2": 0.4691076059866048,
+    "relative_reduction": 0.050218655636077594,
+    "tail_ratio_best": 43.63074040240775,
+    "tail_ratio_lambda0": 44.19714168110101,
+    "tail_closer_to_one": true
+  },
+  "eddy_re1000_partial": {
+    "best_lambda": 1.0,
+    "best_rel_l2": 0.48189935044170645,
+    "baseline_rel_l2": 0.5008543144690032,
+    "relative_reduction": 0.03784526454035763,
+    "tail_ratio_best": 186.2538750862076,
+    "tail_ratio_lambda0": 97.09177058509783,
+    "tail_closer_to_one": false
+  },
+  "_gate_pass": false
+}
+wrote figures/fig10_lambda_sweep.png

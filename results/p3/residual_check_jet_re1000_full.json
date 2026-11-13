@@ -1,0 +1,27 @@
+{
+  "case": "jet_re1000_full",
+  "snapshot": 182,
+  "dt": 0.5,
+  "beta": 2.5,
+  "nu": 0.001,
+  "mu": 0.02,
+  "rms": {
+    "dqdt": 1.9562556743621826,
+    "J": 1.179695725440979,
+    "drag": 0.04054102674126625,
+    "diffusion": 0.018071483820676804,
+    "beta_basis": 0.4714495837688446,
+    "F": 0.10075399279594421
+  },
+  "residual_rms": 0.8540009260177612,
+  "residual_no_beta_rms": 1.5439791679382324,
+  "beta_basis_rms": 0.4714495837688446,
+  "centered_residual_rms": 2.355897903442383,
+  "ratios": {
+    "residual_over_dqdt": 0.4365487278628664,
+    "residual_over_J": 0.7239162672203507,
+    "residual_over_terms_sum": 0.22671984107879953,
+    "centered_over_dqdt": 1.3876916653615554
+  },
+  "beta_oracle_hat": 2.738814115524292
+}

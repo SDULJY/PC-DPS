@@ -1,0 +1,18 @@
+{
+  "case": "eddy_re1000_full",
+  "source": "truth",
+  "beta_true": 0.0,
+  "n_pairs": 1,
+  "beta_hat_mean": 0.0008656609954717674,
+  "beta_hat_std": 0.0,
+  "beta_hat_ci95": [
+    0.0008656609954717674,
+    0.0008656609954717674
+  ],
+  "beta_hat_pooled": 0.0008656609954717674,
+  "beta_hat_values": [
+    0.0008656609954717674
+  ],
+  "absolute_error_mean": 0.0008656609954717674,
+  "absolute_error_pooled": 0.0008656609954717674
+}

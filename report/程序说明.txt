@@ -1,0 +1,212 @@
+程序说明
+========
+
+一、项目内容
+------------
+本项目复现 Suresh Babu, Sadam & Lermusiaux (JAMES 2025, arXiv:2507.00719)
+的准地转（QG）湍流扩散模型超分辨率/稀疏观测重建工作，并增加物理残差引导
+的 DPS 采样器（PC-DPS）。场重建对应"稀疏观测下的状态估计"，β 反演对应
+"系统辨识"。
+
+二、目录
+--------
+third_party/qg-beta-sr/   第三方扩散模型代码（MIT，未修改）
+third_party/qg-2d/        第三方 QG 谱方法模拟器（MIT，未修改）
+data/                     Zenodo 数据集子集（CC BY 4.0）
+weights/                  预训练权重（若使用仓库自带 Weights/ 则此处为空）
+src/common/               配置、指标、日志、数据下载
+src/reproduce/            P0 数据检查与 P1 基线复现
+src/analysis/             P2 失败模式分析（能谱、误差-距离、观测密度）
+src/pcdps/                P3 物理残差引导 DPS（新代码）
+src/beta_invert/          P4 β 反演（可选/stretch）
+tests/                    谱算子与 QG 残差自检
+results/                  每个 run 的 log.json、指标与聚合表
+figures/                  结果图（png + pdf）
+report/                   本说明、结果摘要、打包
+
+三、第三方代码与许可
+--------------------
+1. qg-beta-sr
+   仓库: https://github.com/ananthu545/quasi-geostrophic-beta-plane-super-resolution
+   commit: 5a236ca66f093a8e4192f7eec0cf8c54922f8274
+   许可: MIT（见 third_party/qg-beta-sr/LICENSE）
+   用途: U-Net、噪声表、SDEdit/DPS/conditional/CFG 采样器、预训练权重。
+   本仓库未修改其任何文件；所有封装在 src/ 中完成。
+
+2. qg-2d
+   仓库: https://github.com/ananthu545/qg-2d
+   commit: 41149bca3f74c4ab61e65393b94c058f6604771f
+   许可: MIT（见 third_party/qg-2d/LICENSE）
+   归档: Zenodo 10.5281/zenodo.17282193
+   用途: 谱网格、谱导数、QG 方程与数值格式参考；本项目的 QG 残差算子
+   src/pcdps/qg_ops.py 按该仓库的方程与符号实现（未修改第三方文件）。
+
+3. 论文
+   Suresh Babu, A. N., Sadam, A., & Lermusiaux, P. F. J. (2025).
+   Guided Unconditional and Conditional Generative Models for
+   Super-Resolution and Inference of Quasi-Geostrophic Turbulence.
+   JAMES. arXiv:2507.00719, DOI 10.48550/arXiv.2507.00719.
+
+四、数据与权重 DOI
+------------------
+1. 数据集（CC BY 4.0）
+   Zenodo record: 15742146（父 DOI 15742145）
+   DOI: 10.5281/zenodo.15742146
+   文件: data.zip（解压后为 fields_pooled64_*.npy，shape (500,196,1,64,64)）
+   本项目只解压 12 个文件：4 个 ds64 真值、4 个 ds16 全观测、4 个 ds16 稀疏观测。
+
+2. 代码与权重归档（MIT）
+   Zenodo record: 15750244（父 DOI 15750243）
+   DOI: 10.5281/zenodo.15750244
+   仓库自带 Weights/ 下 12 个 checkpoint：
+     model_uncond_{eddy,jet}_Re_{1000,10000}.pt
+     model_cond_ds16_{eddy,jet}_Re_{1000,10000}.pt
+     model_cond_ds16_partial_{eddy,jet}_Re_{1000,10000}.pt
+
+五、本项目的改动（均为新文件）
+------------------------------
+src/common/config.py        论文/仓库超参与路径
+src/common/metrics.py       相对 L2、能谱、涡度统计、spread-error
+src/common/runlog.py        统一 log.json
+src/common/collect.py       汇总 results/master.csv
+src/common/download_data.sh 并行分块下载（Zenodo Range）
+src/reproduce/check_data.py P0 数据自检
+src/reproduce/case_matrix.py 论文 Table 3 的 8 个算例
+src/reproduce/run_inference.py 基线推理封装（不修改第三方）
+src/reproduce/evaluate.py   与论文 Table 4/5 对比
+src/reproduce/run_p1_grid.py P1 批量运行（双卡）
+src/reproduce/make_figs_p1.py P1 图
+src/analysis/dps_mask.py    任意点观测掩码的 DPS
+src/analysis/density_sweep.py 4x4/6x6/8x8/10x10 观测密度扫描
+src/analysis/make_figs_p2.py 能谱抹平与误差-距离图
+src/pcdps/qg_ops.py         可微 QG 残差（谱方法、2/3 去混叠）
+src/pcdps/sampler.py        PC-DPS（成对采样 + 物理梯度 + λ 归一化）
+src/pcdps/check_residual.py 真值对残差审计
+src/pcdps/run_pcdps.py      PC-DPS 单次运行
+src/pcdps/sweep.py          λ/seed 扫描
+src/pcdps/evaluate_p3.py    P3 聚合与 Gate
+src/pcdps/make_figs_p3.py   P3 图
+tests/test_qg_ops.py        谱算子/QG 残差/β oracle 自检
+
+third_party/ 下两个仓库保持原样；可用
+  git -C third_party/qg-beta-sr status --porcelain
+  git -C third_party/qg-2d status --porcelain
+验证输出为空。
+
+六、运行方法
+------------
+1. 环境
+   cd .
+   source venv/bin/activate
+   # torch 2.5.1+cu124 / numpy / scipy / matplotlib / pandas / pytest
+
+2. 下载与解压
+   bash src/common/download_data.sh          # 9.4 GB，分块并行，md5 校验
+   bash src/reproduce/extract_data.sh        # 只解压 12 个 npy
+
+3. P0 数据检查
+   python src/reproduce/check_data.py --file data/fields_pooled64_jet_re_1000.npy
+
+4. P1 复现（8 算例 x 4 方法 x 3 seeds）
+   python src/reproduce/run_p1_grid.py --n-samples 200 --seeds 0,1,2 --gpus 0,1
+   python src/reproduce/evaluate.py
+   python src/reproduce/make_figs_p1.py
+
+5. P2 失败模式
+   python src/analysis/density_sweep.py --case eddy_re1000_full --n-samples 100
+   python src/analysis/make_figs_p2.py
+
+6. P3 PC-DPS
+   pytest tests/test_qg_ops.py -q
+   python src/pcdps/check_residual.py --case jet_re1000_full --snapshot 182
+   python src/pcdps/run_pcdps.py --case eddy_re1000_partial --lambda-phys 0.1 --seed 0 --n-pairs 100
+   python src/pcdps/sweep.py --n-pairs 100 --seeds 0,1,2
+   python src/pcdps/evaluate_p3.py
+   python src/pcdps/make_figs_p3.py
+
+7. 汇总
+   python src/common/collect.py
+
+七、关键超参（与论文/仓库一致）
+--------------------------------
+- 数据归一化: 涡度场除以 field_std = 1.3（Dataloaders/dataloader.py）
+- 噪声表: mu(t)=cos^2(omega t), sigma=sqrt(1-mu^2+1e-4),
+  omega=arccos(sqrt(1e-3))
+- N_diff=64, N_corr=2, Langevin 步长 0.3
+- SDEdit t_i=16/64=0.25
+- DPS: scale=4 (ds16), C=2e-5, sigma_measure=1e-2
+- CFG: w=1.25
+- 测试协议: run=3221（最后一条轨迹）, 池化快照索引 182
+  （config min_t=101 + snapshot=81），N_ens=16（论文 Table 4/5）
+
+八、备注
+--------
+1. 报告中的每个数字都应能追溯到 results/**/log.json 或 results/*.csv。
+2. P3 的 QG 残差以 third_party/qg-2d 源码为准：
+   dq/dt + J(psi,q) + mu*q - nu*lap(q) + beta*dpsi/dx - F = 0
+   其中 F=-0.1cos(2x)+0.1cos(2y), mu=0.02, nu=1/Re, beta=2.5(jet)/0(eddy)。
+3. 64x64 数据是 512x512 模拟经 Gaussian+cutoff 滤波后的场；真值残差不为零
+   （亚格子项），PC-DPS 使用该残差作为软约束，需在报告中如实说明。
+4. 若 P3 提升 <3%，按任务书要求报告负结果，不修改数字。
+
+九、实际运行补充（2026-11-12）
+--------------------------------
+1. 数据状态
+   - Zenodo 对当前网络持续 403，只完成 127/141 个分块；已从分块中 CRC 解压
+     3 个真值（eddy1000/eddy10000/jet1000）和 5 个 ds16 观测。
+   - eddy 的 ds16 全观测文件在缺失尾部，已用验证过的 A_les 从真值生成
+     （data/generated/，与官方 ds16 的相对误差约 1e-7）。
+   - 目前跑通 5 个算例：jet1000 full、eddy1000/10000 full、
+     eddy1000/10000 partial；缺 jet10000 full 与 jet1000 partial。
+
+2. 测试协议（由论文/config 校准）
+   - 测试 run = 3221 = 池化索引 -6（500 条轨迹从 run 2727 开始）；
+     snapshot = 182（min_t 101 + snapshot 81）。
+   - 验证：jet1000 full、cond、run=-6、snap=182、目标场 std 归一化，
+     ensemble-mean rel L2=0.0182（论文 0.019）。
+
+3. 归一化
+   - 发布数据是原始涡度，不是已归一化场；代码里的 field_std=1.3 不能直接套用。
+   - 真值与观测必须共用同一个尺度：
+     jet1000 用目标帧 std（--normalize-target，约 2.086）；
+     eddy 用 --field-std 1.0。分开标准化会显著变差。
+
+4. DPS 引导强度 C（逐算例）
+   - jet 2e-5；eddy1000 full 1e-4；eddy10000 full 2e-4（2e-5 会数值发散）；
+     eddy partial 1e-4（2e-5 在 200 样本下会偶发爆炸）。
+
+5. P1 结果（论文 N_ens=16 口径，3 seeds）
+   - eddy10000 full：四个方法全部与论文偏差 <10%。
+   - eddy1000 full：cond 4.7%、cfg 8.8% 通过；DPS 16.5%、SDEdit 11.5% 未过。
+   - eddy10000 partial：cfg/cond/sdedit 通过（8.8%/9.4%/0.3%），DPS 27% 未过。
+   - eddy1000 partial：SDEdit 3.6% 通过；cond/cfg 约 65% 偏高；
+     released partial checkpoint 与论文 Table 5 存在明显差异。
+   - jet1000 full：cfg 8.0%、sdedit 3.0% 通过；cond 35.8%、DPS 11.8% 未过。
+   - 汇总：1/5 算例四方法全过，方法通过率 60%；缺 3 个算例，未达到 6/8 Gate。
+     详见 results/tab_reproduce_16.csv 与 results/p1/gate_summary_16.json。
+
+6. P3 PC-DPS 结果（成对采样，100 对，3 seeds）
+   - eddy10000 partial：λ=2 + 梯度分位裁剪(0.999) + gap-only，
+     rel L2 从 0.4691 降到 0.4329（-7.7%），谱尾比值 44.2→42.5（更接近 1）。
+   - eddy1000 partial：最佳 λ=1，rel L2 0.5009→0.4819（-3.8%），谱尾变差。
+   - 结论：边缘提升，未达到 8% Gate；log-spectrum 误差未改善。
+     按任务书要求如实报告，不修改数字。
+
+7. P4 β 反演
+   - 真值 oracle：jet β̂=2.739（真值 2.5，相对误差 9.6%）；
+     eddy β̂=0.00087（真值 0）。
+   - 从 PC-DPS 重建场：jet β̂=2.656（相对误差 6.3%）；eddy β̂=0.025。
+   - 二分类模型选择：jet 观测上正确选中 jet（留出 RMSE 0.925 vs eddy 2.016）。
+   - 结论：β 反演达到 <15% Gate；ν 在 64² 下不可辨识，只报量级。
+
+8. QG 残差符号
+   - 发布 jet 数据与 +β∂ψ/∂x 残差明显不符（残差 2.61），
+     与 -β∂ψ/∂x 一致（残差 0.854，β̂=+2.739）。
+     因此 QGOps 使用 beta_sign=-1（数据口径）；eddy β=0 不受影响。
+
+9. 复现命令与结果位置
+   - P1：src/reproduce/run_p1_available.py；结果 results/p1/、results/tab_reproduce*.csv
+   - P2：src/analysis/run_p2.sh；结果 results/p2/、figures/fig05-07
+   - P3：src/pcdps/sweep.py；结果 results/p3/、results/tab_pcdps.csv、figures/fig08-10
+   - P4：src/beta_invert/；结果 results/p4/、figures/fig11-12
+   - 汇总：report/results_summary.md

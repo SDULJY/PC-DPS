@@ -1,0 +1,17 @@
+parsed 23 complete members in 8.523 GB
+extract data/fields_pooled64_eddy_re_1000.npy: 1489 MB -> 1.606 GB
+  OK data/fields_pooled64_eddy_re_1000.npy (1.606 GB)
+extract data/fields_pooled64_eddy_re_10000.npy: 1490 MB -> 1.606 GB
+  OK data/fields_pooled64_eddy_re_10000.npy (1.606 GB)
+extract data/fields_pooled64_jet_re_1000.npy: 1478 MB -> 1.606 GB
+  OK data/fields_pooled64_jet_re_1000.npy (1.606 GB)
+extract data/fields_pooled64_ds16_jet_re_1000.npy: 110 MB -> 1.606 GB
+  OK data/fields_pooled64_ds16_jet_re_1000.npy (1.606 GB)
+extract data/fields_pooled64_ds16_jet_re_10000.npy: 111 MB -> 1.606 GB
+  OK data/fields_pooled64_ds16_jet_re_10000.npy (1.606 GB)
+extract data/fields_pooled64_ds16_partial_eddy_re_1000.npy: 74 MB -> 1.606 GB
+  OK data/fields_pooled64_ds16_partial_eddy_re_1000.npy (1.606 GB)
+extract data/fields_pooled64_ds16_partial_eddy_re_10000.npy: 74 MB -> 1.606 GB
+  OK data/fields_pooled64_ds16_partial_eddy_re_10000.npy (1.606 GB)
+extract data/fields_pooled64_ds16_partial_jet_re_10000.npy: 72 MB -> 1.606 GB
+  OK data/fields_pooled64_ds16_partial_jet_re_10000.npy (1.606 GB)
