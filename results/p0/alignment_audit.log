@@ -1,0 +1,31 @@
+eddy_re1000_partial {
+  "truth": "data/fields_pooled64_eddy_re_1000.npy",
+  "obs": "data/fields_pooled64_ds16_partial_eddy_re_1000.npy",
+  "run_index": -6,
+  "snapshot": 182,
+  "obs_run_index": -6,
+  "obs_snapshot": 182,
+  "rel_same_index": 0.0,
+  "obs_zero_frac": 0.5625
+}
+eddy_re10000_partial {
+  "truth": "data/fields_pooled64_eddy_re_10000.npy",
+  "obs": "data/fields_pooled64_ds16_partial_eddy_re_10000.npy",
+  "run_index": -6,
+  "snapshot": 182,
+  "obs_run_index": -6,
+  "obs_snapshot": 182,
+  "rel_same_index": 0.0,
+  "obs_zero_frac": 0.5625
+}
+jet_re1000_partial {
+  "truth": "data/fields_pooled64_jet_re_1000.npy",
+  "obs": "data/generated/jet1000_ds16_partial.npy",
+  "run_index": -6,
+  "snapshot": 182,
+  "obs_run_index": 0,
+  "obs_snapshot": 0,
+  "rel_same_index": 0.0,
+  "obs_zero_frac": 0.5625
+}
+wrote results/p0/alignment_audit.json

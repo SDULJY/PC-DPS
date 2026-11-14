@@ -163,3 +163,70 @@
 | 说明 | `report/程序说明.txt` |
 | 自动汇总 | `report/results_summary.md` |
 | 检查点包 | `report/checkpoint_2026-11-13_final.zip` |
+
+---
+
+# 补充：四个局限的定位结果（2026-11-14）
+
+## A. P1 eddy Re=1000 sparse +65% 偏差：根因定位
+
+1. **索引对齐已排除**：`A_les(truth[-6,182], gappy=True)` 与发布 partial 的
+   rel L2 = **0.0**（eddy1000、eddy10000 都是 0.0）。不是 batch/time 错位。
+2. **checkpoint 并非整体失效**：同一 partial cond 权重在训练 run 上
+   rel L2 = 0.246（run 0）、0.263（100）、0.135（200）、0.133（300）、0.381（400）；
+   测试 run -6 = 0.446。模型对场非常敏感。
+3. **不是多快照平均**：run -6 在 101–195 多个快照上的 cond 平均约 0.359，不是 0.247。
+4. **候选轨迹**：run 0 的 M1/M3/M4 = 0.703/0.246/0.232，与论文 0.775/0.247/0.239
+   差 <10%；M2=0.489 差 10.3%。run -19 的 M1/M3/M4 也接近。
+   但没有 run 在固定 C 下同时匹配四方法，且 run 0/-19 很可能是训练轨迹。
+5. **权重历史**：`git log --all` 只有 Initial commit，无旧 partial 权重版本。
+6. **结论**：65% 不是代码/索引 bug，最可能是**发布 partial checkpoint 与论文训练配置/
+   测试轨迹不一致**。正式结果仍用 run=-6、snapshot=182；eddy1000 partial 的 M3/M4
+   标为“复现异常”，不挑 run、不改数字。证据：`results/p1/checkpoint_audit.md`、
+   `results/p0/alignment_audit.json`。
+
+## B. P3 亚格子项：残差审计与有效闭合
+
+- 前向/中心残差 `rms(r)/rms(dqdt)`：
+  - eddy1000：0.13–0.24 / 0.11–0.20
+  - eddy10000：0.28–0.62 / 0.21–0.45
+  - jet1000：0.33–0.45 / 0.26–0.36；β oracle 2.74–2.79
+- 有效线性闭合（训练 0–399，验证 400–479）：
+
+| case | c_J | c_mu | c_nu | c_beta | c_h4 | c_F | val ratio |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| eddy1000 | 1.09 | 0.91 | 2.03 | — | 0 | 1.07 | 0.276→0.260 |
+| eddy10000 | 0.99 | 0.82 | 8.48 | — | 0 | 0.97 | 0.523→0.522 |
+| jet1000 | 0.90 | 1.10 | 1.41 | 2.78 | 0 | 1.11 | 0.565→0.380 |
+
+- jet 闭合降残差 **33%**；eddy10000 **无改善**；eddy1000 仅 6%。双调和 ∇⁴q 系数≈0。
+- 结论：eddy10000 的缺失项不在 J/μq/∇²q/∇⁴q/β/F 张成空间内，线性闭合不足；
+  物理项只能作软约束。证据：`results/p3/residual_audit.csv`、
+  `results/p3/closure_coefficients.json`、`results/p3/closure_findings.md`、
+  `figures/fig13_residual_spectrum.png`。
+
+## C. P2 PC-DPS：为什么停在 7.7%
+
+- 误差分解（eddy10000 partial）：DPS→PC-DPS
+  - k0–8：0.378→0.358
+  - k9–16：0.976→0.968
+  - k17–32：1.005→1.000
+  - 观测区 RMSE/std：0.196→0.195；缺口区：0.394→0.378
+  大尺度/缺口有改善，细尺度几乎不动。
+- 负结果：
+  - 三帧中心差分（20 对）：0.4624→0.4491（-2.9%），大 λ 爆炸；
+  - 逐样本梯度归一化：~0.1% 额外改善；
+  - λ 随 t 增强：~0.4% 额外改善；
+  - 残差低通、x0 低通、t_min/t_max 门控：均无改善或更差。
+- 正式最佳仍是 **eddy10000 partial λ=2 + clip 0.999 + gap-only：-7.7%**；
+  差 0.3% 未过 8% Gate。结论：要过 8% 需要尺度依赖闭合或学习型亚格子模型，
+  不是继续调 λ。证据：`results/p3/pcdps_diagnosis.json`、
+  `figures/fig15_pcdps_diagnosis.png`。
+
+## D. P0 最小补数据方案（未执行，等待用户下载）
+
+`parse_missing.py` 已精确算出：只需 zip 尾部
+**327,859,074 字节**，范围 `8522825728-8850684801`，即可补全
+`fields_pooled64_jet_re_10000.npy`；不需要 0.88GB 全尾部/中央目录。
+用户侧命令与服务器补丁见 `src/reproduce/parse_missing.py`、
+`src/reproduce/patch_jet10000.py` 与 `STATUS.md`。

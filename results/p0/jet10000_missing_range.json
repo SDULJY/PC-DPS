@@ -1,0 +1,15 @@
+{
+  "name": "data/fields_pooled64_jet_re_10000.npy",
+  "local_header_offset": 7371590269,
+  "data_offset": 7371590364,
+  "compressed_size": 1479094438,
+  "uncompressed_size": 1605632128,
+  "crc32": "01039fb7",
+  "compression_method": 8,
+  "member_end_exclusive": 8850684802,
+  "available_prefix": 8522825728,
+  "missing_start": 8522825728,
+  "missing_end_inclusive": 8850684801,
+  "missing_bytes": 327859074,
+  "curl_range": "8522825728-8850684801"
+}

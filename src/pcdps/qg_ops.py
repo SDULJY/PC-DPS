@@ -80,6 +80,9 @@ class QGOps:
     def laplacian(self, q: torch.Tensor) -> torch.Tensor:
         return self.to_physical(-self.k2 * self.to_spectral(q))
 
+    def biharmonic(self, q: torch.Tensor) -> torch.Tensor:
+        return self.laplacian(self.laplacian(q))
+
     def lowpass(self, q: torch.Tensor, kmax: float) -> torch.Tensor:
         mask = (torch.sqrt(self.k2) <= kmax).to(q.dtype)
         return self.to_physical(self.to_spectral(q) * mask)
