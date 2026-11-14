@@ -1,0 +1,49 @@
+                case method  n_seeds  rel_l2_mean  rel_l2_seedstd  rel_l2_ensmean  spread_error_pearson  spread_skill_ratio  paper_rel_l2  paper_std   table  rel_dev  within_10pct
+   eddy_re10000_full    cfg        3     0.147182        0.001295        0.119592              0.312271            0.697581         0.153      0.007 Table 4 0.038028          True
+   eddy_re10000_full   cond        3     0.144235        0.001111        0.117680              0.314847            0.693909         0.152      0.006 Table 4 0.051088          True
+   eddy_re10000_full    dps        3     0.316320        0.002708        0.253584              0.152425            0.747837         0.322      0.011 Table 4 0.017640          True
+   eddy_re10000_full sdedit        3     0.328067        0.001737        0.299844              0.021579            0.448585         0.340      0.010 Table 4 0.035098          True
+eddy_re10000_partial    cfg        3     0.337260        0.004680        0.308200              0.583254            0.406727         0.310      0.018 Table 5 0.087936          True
+eddy_re10000_partial   cond        3     0.342390        0.004810        0.315158              0.597063            0.392300         0.313      0.021 Table 5 0.093899          True
+eddy_re10000_partial    dps        3     0.468456        0.028444        0.388702              0.310188            0.660585         0.642      0.021 Table 5 0.270318         False
+eddy_re10000_partial sdedit        3     0.685129        0.002326        0.674292              0.109798            0.182062         0.683      0.011 Table 5 0.003117          True
+    eddy_re1000_full    cfg        3     0.109864        0.001873        0.088602              0.373468            0.718639         0.101      0.004 Table 4 0.087762          True
+    eddy_re1000_full   cond        3     0.104749        0.001868        0.085297              0.397321            0.699926         0.100      0.006 Table 4 0.047492          True
+    eddy_re1000_full    dps        3     0.308639        0.007300        0.262198              0.274399            0.620953         0.265      0.013 Table 4 0.164677         False
+    eddy_re1000_full sdedit        3     0.336746        0.003553        0.313753              0.105077            0.395440         0.302      0.008 Table 4 0.115053         False
+ eddy_re1000_partial    cfg        3     0.393756        0.004180        0.368131              0.622867            0.328260         0.239      0.016 Table 5 0.647513         False
+ eddy_re1000_partial   cond        3     0.406676        0.005097        0.387064              0.636007            0.282832         0.247      0.033 Table 5 0.646460         False
+ eddy_re1000_partial    dps        3     0.498072        0.019482        0.438561              0.491739            0.524572         0.443      0.053 Table 5 0.124316         False
+ eddy_re1000_partial sdedit        3     0.747173        0.001554        0.739791             -0.056807            0.143647         0.775      0.008 Table 5 0.035906          True
+    jet_re10000_full    cfg        3     0.063071        0.000203        0.047550              0.162491            0.870879         0.071      0.002 Table 4 0.111680         False
+    jet_re10000_full   cond        3     0.060123        0.000224        0.044933              0.175401            0.888237         0.069      0.005 Table 4 0.128647         False
+    jet_re10000_full    dps        3     0.109779        0.001982        0.079979              0.266270            0.933734         0.129      0.007 Table 4 0.149001         False
+    jet_re10000_full sdedit        3     0.170799        0.000807        0.152136              0.165401            0.513419         0.213      0.009 Table 4 0.198125         False
+ jet_re10000_partial    cfg        3     0.086621        0.000304        0.069225              0.296952            0.724767         0.102      0.005 Table 5 0.150773         False
+ jet_re10000_partial   cond        3     0.082532        0.000268        0.064788              0.288766            0.760943         0.099      0.004 Table 5 0.166346         False
+ jet_re10000_partial    dps        3     0.135771        0.003784        0.093098              0.315005            1.054238         0.435      0.012 Table 5 0.687883         False
+ jet_re10000_partial sdedit        3     0.666513        0.001569        0.631886              0.068877            0.341050         0.668      0.010 Table 5 0.002226          True
+     jet_re1000_full    cfg        3     0.021595        0.000135        0.014564              0.123176            1.107038         0.020      0.001 Table 4 0.079747          True
+     jet_re1000_full   cond        3     0.025810        0.006743        0.015117              0.254772            1.822744         0.019      0.001 Table 4 0.358408         False
+     jet_re1000_full    dps        3     0.050327        0.000761        0.034809              0.148690            1.053768         0.045      0.007 Table 4 0.118387         False
+     jet_re1000_full sdedit        3     0.101829        0.002344        0.083918              0.196450            0.701408         0.105      0.008 Table 4 0.030205          True
+  jet_re1000_partial    cfg        3     0.037149        0.001692        0.025255              0.260946            1.088819         0.048      0.013 Table 5 0.226072         False
+  jet_re1000_partial   cond        3     0.036425        0.004633        0.021880              0.277372            1.388701         0.045      0.021 Table 5 0.190546         False
+  jet_re1000_partial    dps        3     0.354131        0.020030        0.255840              0.472732            1.000990         0.338      0.012 Table 5 0.047726          True
+  jet_re1000_partial sdedit        3     0.602823        0.002477        0.564491              0.055198            0.381204         0.607      0.014 Table 5 0.006881          True
+{
+  "n_cases": 8,
+  "n_cases_all_methods_within_10pct": 1,
+  "case_gate": {
+    "eddy_re10000_full": true,
+    "eddy_re10000_partial": false,
+    "eddy_re1000_full": false,
+    "eddy_re1000_partial": false,
+    "jet_re10000_full": false,
+    "jet_re10000_partial": false,
+    "jet_re1000_full": false,
+    "jet_re1000_partial": false
+  },
+  "method_pass_rate": 0.46875,
+  "gate_pass": false
+}

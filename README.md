@@ -11,10 +11,11 @@ plus a physics-constrained DPS extension (PC-DPS) and a beta-inversion
 
 ## Results at a glance
 
-- **P1 reproduction**: 6 of 8 paper cases available; **14/24 case-method
-  combinations within 10%** of the paper (58.3%). `eddy Re=10000 full` passes
-  with all four methods. The two `jet Re=10000` cases are `N/A` because the
-  Zenodo download was rate-limited (127/141 chunks).
+- **P1 reproduction**: all **8/8** paper cases available after recovering the
+  `jet Re=10000` truth from a 328MB ZIP-tail patch; **15/32 case-method
+  combinations within 10%** of the paper (46.9%). `eddy Re=10000 full` passes
+  with all four methods. The strict 6/8 gate is not met; this is reported
+  honestly.
 - **P2 failure modes**: DPS far-field error rises to 1.73x the target
   variability on `eddy Re=10000 partial` (conditional: 0.52), and the
   observation-density curve is monotonic (4x4 -> 10x10).
@@ -27,6 +28,9 @@ plus a physics-constrained DPS extension (PC-DPS) and a beta-inversion
   model-selection experiment correctly identifies the jet case.
 
 Full tables, caveats, and figure references: [`report/FINAL_RESULTS.md`](report/FINAL_RESULTS.md).
+The P1 anomaly audit, P3 residual/closures, and P2 diagnosis are in
+`results/p1/checkpoint_audit.md`, `results/p3/closure_findings.md`, and
+`results/p3/pcdps_diagnosis.json`.
 
 ## Quick start
 
@@ -90,4 +94,4 @@ excluded from git. Run `setup_third_party.sh` to restore the upstream code.
 - The released fields are raw vorticity, not pre-normalized. The reproduction
   uses the target-frame std for jet and `field_std=1.0` for eddy; see
   `results/p0/calibration_findings.md`.
-- Missing case files are marked `N/A`; no numbers are fabricated.
+- All 8 official cases are now present; no numbers are fabricated.

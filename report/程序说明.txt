@@ -210,3 +210,39 @@ third_party/ 下两个仓库保持原样；可用
    - P3：src/pcdps/sweep.py；结果 results/p3/、results/tab_pcdps.csv、figures/fig08-10
    - P4：src/beta_invert/；结果 results/p4/、figures/fig11-12
    - 汇总：report/results_summary.md
+
+十、数据补齐与 8 算例最终结果（2026-11-14，覆盖第五节）
+----------------------------------------------------------------
+1. 数据
+   - 127 个分块 + 327,859,074 字节最小尾部补丁，已 CRC 校验恢复
+     fields_pooled64_jet_re_10000.npy（shape 500×196×1×64×64）。
+   - 官方 8 个算例全部可跑；不再有 N/A。
+
+2. P1（N_ens=16，3 seeds）
+   - 32 个“算例×方法”组合：15 个 <10%，方法通过率 46.9%。
+   - 四方法全过：eddy10000 full。
+   - 未达 6/8 Gate（只有 1/8 算例四方法全过）。
+   - 主要偏差：jet10000 full 四方法低 11–20%；jet10000 partial DPS 低 69%；
+     eddy1000 partial cond/CFG 高约 65%（判定为发布 partial checkpoint/
+     测试轨迹差异，非索引 bug）；jet1000 full cond 高 35.8%。
+   - 表：results/tab_reproduce_16.csv、tab_reproduce.csv；
+     证据：results/p1/checkpoint_audit.md。
+
+3. P2
+   - 密度 4/6/8/10 → 2.55/1.54/1.22/0.98（单调）。
+   - eddy10000 partial 远端 RMSE/std：DPS 1.73 vs cond 0.52。
+
+4. P3
+   - eddy10000 partial：0.4691→0.4329（-7.7%，谱尾 44.2→42.5）。
+   - eddy1000 partial：0.5009→0.4819（-3.8%，谱尾变差）。
+   - jet1000 full：基本无效。
+   - 亚格子闭合：jet 残差 -33%，eddy10000 无改善，∇⁴q 系数≈0；
+     物理项只能作软约束。未达 8% Gate，如实报告。
+
+5. P4
+   - jet β̂=2.656（真值 2.5，误差 6.3%）；eddy β̂=0.025；
+     模型选择正确选中 jet。P4 Gate 通过（<15%）。
+
+6. 最终汇总
+   - report/FINAL_RESULTS.md
+   - GitHub: https://github.com/SDULJY/qg-diffusion-repro

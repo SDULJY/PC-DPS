@@ -22,6 +22,14 @@
 | eddy_re1000_partial | cond | 0.4067 | 0.247 | 0.6465 | False |
 | eddy_re1000_partial | dps | 0.4981 | 0.443 | 0.1243 | False |
 | eddy_re1000_partial | sdedit | 0.7472 | 0.775 | 0.03591 | True |
+| jet_re10000_full | cfg | 0.06307 | 0.071 | 0.1117 | False |
+| jet_re10000_full | cond | 0.06012 | 0.069 | 0.1286 | False |
+| jet_re10000_full | dps | 0.1098 | 0.129 | 0.149 | False |
+| jet_re10000_full | sdedit | 0.1708 | 0.213 | 0.1981 | False |
+| jet_re10000_partial | cfg | 0.08662 | 0.102 | 0.1508 | False |
+| jet_re10000_partial | cond | 0.08253 | 0.099 | 0.1663 | False |
+| jet_re10000_partial | dps | 0.1358 | 0.435 | 0.6879 | False |
+| jet_re10000_partial | sdedit | 0.6665 | 0.668 | 0.002226 | True |
 | jet_re1000_full | cfg | 0.02159 | 0.02 | 0.07975 | True |
 | jet_re1000_full | cond | 0.02581 | 0.019 | 0.3584 | False |
 | jet_re1000_full | dps | 0.05033 | 0.045 | 0.1184 | False |
@@ -31,7 +39,7 @@
 | jet_re1000_partial | dps | 0.3541 | 0.338 | 0.04773 | True |
 | jet_re1000_partial | sdedit | 0.6028 | 0.607 | 0.006881 | True |
 
-Gate: 1/6 cases all methods within 10% (pass=False); method pass rate=0.58.
+Gate: 1/8 cases all methods within 10% (pass=False); method pass rate=0.47.
 
 
 ## P1（200 样本 × 3 seeds）
@@ -54,6 +62,14 @@ Gate: 1/6 cases all methods within 10% (pass=False); method pass rate=0.58.
 | eddy_re1000_partial | cond | 0.4066 | 0.003226 | 0.3834 | 0.247 | 0.6462 |
 | eddy_re1000_partial | dps | 0.4997 | 0.003406 | 0.4371 | 0.443 | 0.128 |
 | eddy_re1000_partial | sdedit | 0.7474 | 0.000885 | 0.7396 | 0.775 | 0.03565 |
+| jet_re10000_full | cfg | 0.0647 | 0.002622 | 0.04656 | 0.071 | 0.08873 |
+| jet_re10000_full | cond | 0.07023 | 0.00142 | 0.04554 | 0.069 | 0.01789 |
+| jet_re10000_full | dps | 0.1094 | 0.0005234 | 0.07705 | 0.129 | 0.1522 |
+| jet_re10000_full | sdedit | 0.1708 | 0.0006285 | 0.151 | 0.213 | 0.1983 |
+| jet_re10000_partial | cfg | 0.08569 | 0.0002685 | 0.06693 | 0.102 | 0.1599 |
+| jet_re10000_partial | cond | 0.08184 | 0.0002672 | 0.06265 | 0.099 | 0.1733 |
+| jet_re10000_partial | dps | 0.1365 | 0.00139 | 0.09025 | 0.435 | 0.6863 |
+| jet_re10000_partial | sdedit | 0.6678 | 0.001127 | 0.6309 | 0.668 | 0.0003735 |
 | jet_re1000_full | cfg | 0.02302 | 0.0006741 | 0.01405 | 0.02 | 0.151 |
 | jet_re1000_full | cond | 0.02796 | 0.003451 | 0.0136 | 0.019 | 0.4716 |
 | jet_re1000_full | dps | 0.05002 | 0.0003476 | 0.03486 | 0.045 | 0.1116 |
@@ -155,3 +171,5 @@ Gate: 1/6 cases all methods within 10% (pass=False); method pass rate=0.58.
 - figures/fig10_lambda_sweep.png
 - figures/fig11_beta_estimate.png
 - figures/fig12_beta_convergence.png
+- figures/fig13_residual_spectrum.png
+- figures/fig15_pcdps_diagnosis.png
