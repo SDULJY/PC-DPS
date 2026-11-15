@@ -1,14 +1,14 @@
-"""Package code, figures, tables and logs for submission (excludes data/weights)."""
+"""Package code, figures, tables and logs (excludes data/weights)."""
 from __future__ import annotations
 
 import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-OUT = ROOT / "report" / "题目(XX).zip"
+OUT = ROOT / "report" / "qg-diffusion-repro.zip"
 
 INCLUDE_DIRS = ["src", "tests", "figures", "results", "report"]
-INCLUDE_FILES = ["README.md", "requirements.txt", "STATUS.md"]
+INCLUDE_FILES = ["README.md", "README.zh-CN.md", "LICENSE", "NOTICE", "requirements.txt"]
 EXCLUDE_SUFFIX = {".npz", ".pt", ".pth", ".npy", ".zip"}
 EXCLUDE_PARTS = {"data", "weights", "venv", "third_party", "__pycache__", ".git"}
 
@@ -37,9 +37,9 @@ def main():
             for p in sorted(base.rglob("*")):
                 if ok(p):
                     z.write(p, p.relative_to(ROOT))
-        # A placeholder the user replaces with the final docx.
-        z.writestr("report/请放入最终docx.txt",
-                   "请将最终 docx/pdf 放入本压缩包，并把文件名改为 题目(姓名学号)。\n")
+        # Placeholder for an optional final report.
+        z.writestr("report/README_ADD_REPORT.txt",
+                   "Add the final report (PDF/DOCX) here if you need one.\n")
     size = OUT.stat().st_size / 1e6
     print(f"wrote {OUT} ({size:.1f} MB)")
 
