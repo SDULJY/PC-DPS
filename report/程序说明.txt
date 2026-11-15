@@ -74,7 +74,8 @@ src/reproduce/check_data.py P0 数据自检
 src/reproduce/case_matrix.py 论文 Table 3 的 8 个算例
 src/reproduce/run_inference.py 基线推理封装（不修改第三方）
 src/reproduce/evaluate.py   与论文 Table 4/5 对比
-src/reproduce/run_p1_grid.py P1 批量运行（双卡）
+src/reproduce/run_p1_grid.py 早期 P1 批量运行脚本
+src/reproduce/run_p1_available.py 最终 P1 批量运行脚本
 src/reproduce/make_figs_p1.py P1 图
 src/analysis/dps_mask.py    任意点观测掩码的 DPS
 src/analysis/density_sweep.py 4x4/6x6/8x8/10x10 观测密度扫描
@@ -96,19 +97,20 @@ third_party/ 下两个仓库保持原样；可用
 六、运行方法
 ------------
 1. 环境
-   cd .
+   cd qg-diffusion-repro
    source venv/bin/activate
    # torch 2.5.1+cu124 / numpy / scipy / matplotlib / pandas / pytest
 
 2. 下载与解压
    bash src/common/download_data.sh          # 9.4 GB，分块并行，md5 校验
    bash src/reproduce/extract_data.sh        # 只解压 12 个 npy
+   # 3 个缺失的 ds16 观测用 A_les 从真值生成（见 README “Observation files”）
 
 3. P0 数据检查
    python src/reproduce/check_data.py --file data/fields_pooled64_jet_re_1000.npy
 
 4. P1 复现（8 算例 x 4 方法 x 3 seeds）
-   python src/reproduce/run_p1_grid.py --n-samples 200 --seeds 0,1,2 --gpus 0,1
+   python src/reproduce/run_p1_available.py --n-samples 200 --seeds 0,1,2 --gpus 0,1
    python src/reproduce/evaluate.py
    python src/reproduce/make_figs_p1.py
 
@@ -149,8 +151,8 @@ third_party/ 下两个仓库保持原样；可用
    （亚格子项），PC-DPS 使用该残差作为软约束，需在报告中如实说明。
 4. 若 P3 提升 <3%，按任务书要求报告负结果，不修改数字。
 
-九、实际运行补充（2026-11-12）
---------------------------------
+九、实际运行补充（2026-11-12，历史中间状态）
+------------------------------------------------
 1. 数据状态
    - Zenodo 对当前网络持续 403，只完成 127/141 个分块；已从分块中 CRC 解压
      3 个真值（eddy1000/eddy10000/jet1000）和 5 个 ds16 观测。
@@ -211,8 +213,8 @@ third_party/ 下两个仓库保持原样；可用
    - P4：src/beta_invert/；结果 results/p4/、figures/fig11-12
    - 汇总：report/results_summary.md
 
-十、数据补齐与 8 算例最终结果（2026-11-14，覆盖第五节）
-----------------------------------------------------------------
+十、数据补齐与 8 算例最终结果（2026-11-14，最终结果）
+--------------------------------------------------------
 1. 数据
    - 127 个分块 + 327,859,074 字节最小尾部补丁，已 CRC 校验恢复
      fields_pooled64_jet_re_10000.npy（shape 500×196×1×64×64）。

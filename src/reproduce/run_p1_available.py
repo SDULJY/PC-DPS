@@ -1,23 +1,26 @@
-"""Run P1 on the cases currently available from the partial download.
+"""Run the P1 grid (8 cases x 4 methods x seeds).
 
 Protocol identified from the paper/config and calibration:
 - test run 3221 = pooled index -6, snapshot 182.
 - jet: normalize target and observation by the target-frame std (unit variance).
 - eddy: fixed field_std=1.0 (the conditional checkpoints are stable there;
   the released data are raw vorticity, not pre-normalized).
-- eddy full observations are generated from truth with the exact A_les operator
-  because the ds16 full files are still in the undownloaded tail.
+- Three released ds16 files are not present in the recovered ZIP subset
+  (eddy full x2, jet1000 partial).  Their observations are generated from the
+  truth with the exact A_les operator and are mathematically identical; see
+  README "Observation files".
 """
 from __future__ import annotations
 
 import argparse
 import os
 import subprocess
+import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-PY = ROOT / "venv" / "bin" / "python"
+PY = Path(sys.executable)
 METHODS = ["sdedit", "dps", "cond", "cfg"]
 
 CASES = {
@@ -40,10 +43,11 @@ CASES = {
     },
     "eddy_re1000_partial": {"args": ["--field-std", "1.0", "--dps-c", "1e-4"], "methods": METHODS},
     "eddy_re10000_partial": {"args": ["--field-std", "1.0"], "methods": METHODS},
-    # The three cases below need the still-missing Zenodo chunks.
+    # Released ds16 files for these cases exist in the recovered ZIP subset.
     "jet_re10000_full": {"args": ["--normalize-target"], "methods": METHODS},
     "jet_re1000_partial": {"args": ["--normalize-target", "--dps-c", "1e-3",
         "--obs-file", str(ROOT / "data" / "generated" / "jet1000_ds16_partial.npy"),
+        # generated obs files store one frame at [0, 0, 0]
         "--obs-run-index", "-1", "--obs-snapshot", "0"], "methods": METHODS},
     "jet_re10000_partial": {"args": ["--normalize-target", "--dps-c", "1e-4"], "methods": METHODS},
 }

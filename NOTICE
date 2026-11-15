@@ -1,0 +1,39 @@
+Third-party notices
+===================
+
+This repository contains original code released under the MIT License (see
+LICENSE).  It builds on the following third-party material, which is not
+redistributed in this repository but is cloned or downloaded by the setup
+scripts.
+
+1. qg-beta-sr — diffusion models for quasi-geostrophic turbulence
+   Repository: https://github.com/ananthu545/quasi-geostrophic-beta-plane-super-resolution
+   Pinned commit: 5a236ca66f093a8e4192f7eec0cf8c54922f8274
+   License: MIT (see third_party/qg-beta-sr/LICENSE after setup)
+   Used for: U-Net, noise schedule, SDEdit / DPS / conditional / CFG samplers,
+   and the pretrained checkpoints.
+
+2. qg-2d — spectral quasi-geostrophic simulator
+   Repository: https://github.com/ananthu545/qg-2d
+   Pinned commit: 41149bca3f74c4ab61e65393b94c058f6604771f
+   Archive: https://doi.org/10.5281/zenodo.17282193
+   License: MIT (see third_party/qg-2d/LICENSE after setup)
+   Used for: grid, spectral derivatives, and the QG equation / sign convention
+   implemented in src/pcdps/qg_ops.py.
+
+3. Dataset — pooled 64x64 quasi-geostrophic fields
+   Zenodo: https://doi.org/10.5281/zenodo.15742146
+   License: Creative Commons Attribution 4.0 International (CC BY 4.0)
+   The dataset is not included in this repository; download it from Zenodo.
+
+4. Pretrained weights
+   Zenodo: https://doi.org/10.5281/zenodo.15750244
+   License: MIT (as stated by the upstream authors)
+   The checkpoints are part of the qg-beta-sr clone used by setup_third_party.sh.
+
+5. Paper
+   Suresh Babu, A. N., Sadam, A., & Lermusiaux, P. F. J. (2025).
+   Guided Unconditional and Conditional Generative Models for
+   Super-Resolution and Inference of Quasi-Geostrophic Turbulence.
+   JAMES. arXiv:2507.00719. https://doi.org/10.48550/arXiv.2507.00719
+   The paper is cited, not redistributed.

@@ -11,6 +11,7 @@ import pandas as pd
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from matplotlib.gridspec import GridSpec
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -31,30 +32,54 @@ def load_run(case, method, seed=0):
 
 
 def panel_figure(cases):
-    fig, axes = plt.subplots(len(cases), 6, figsize=(11, 3.1 * len(cases)), squeeze=False)
-    cols = ["truth", "observation"] + METHODS
+    n = len(cases)
+    # 第 7 列专门放 colorbar；边距按两行 1.69 in 正方形子图调好，
+    # 避免 imshow 在上下留白边。不要再加 tight_layout()。
+    fig = plt.figure(figsize=(11.6, 3.1 * n))
+    gs = GridSpec(n, 7, figure=fig,
+                  width_ratios=[1, 1, 1, 1, 1, 1, 0.075],
+                  left=0.015, right=0.965, top=0.85, bottom=0.15,
+                  wspace=0.07, hspace=0.56)
+    axes = np.array([[fig.add_subplot(gs[i, j]) for j in range(6)]
+                     for i in range(n)])
+    caxes = [fig.add_subplot(gs[i, 6]) for i in range(n)]
     for i, case in enumerate(cases):
         ref = load_run(case, "dps")
         if ref is None:
-            continue
+            raise FileNotFoundError(f"missing samples.npz: {case}/dps/seed0")
         truth, obs = ref["truth"], ref["observed"]
         vmax = float(np.percentile(np.abs(truth), 99)) or 1.0
-        im = axes[i, 0].imshow(truth, origin="lower", cmap="RdBu_r", vmin=-vmax, vmax=vmax)
+        im = axes[i, 0].imshow(truth, origin="lower", cmap="RdBu_r",
+                               vmin=-vmax, vmax=vmax)
         axes[i, 0].set_title(f"{case}: truth")
-        axes[i, 1].imshow(obs, origin="lower", cmap="RdBu_r", vmin=-vmax, vmax=vmax)
+        axes[i, 1].imshow(obs, origin="lower", cmap="RdBu_r",
+                          vmin=-vmax, vmax=vmax)
         axes[i, 1].set_title("observation")
         for j, method in enumerate(METHODS, start=2):
             d = load_run(case, method)
-            arr = ensemble_mean(d["samples"]) if d is not None else np.zeros_like(truth)
-            axes[i, j].imshow(arr, origin="lower", cmap="RdBu_r", vmin=-vmax, vmax=vmax)
+            if d is None:
+                raise FileNotFoundError(f"missing samples.npz: {case}/{method}/seed0")
+            arr = ensemble_mean(d["samples"])
+            axes[i, j].imshow(arr, origin="lower", cmap="RdBu_r",
+                              vmin=-vmax, vmax=vmax)
             axes[i, j].set_title(METHOD_LABEL[method])
         for ax in axes[i]:
-            ax.set_xticks([]); ax.set_yticks([])
-        fig.colorbar(im, ax=axes[i, :], fraction=0.015, pad=0.005)
-    fig.tight_layout()
-    fig.savefig(FIGURES / "fig01_recon_panels.png", dpi=300)
+            ax.set_xticks([])
+            ax.set_yticks([])
+        fig.colorbar(im, cax=caxes[i])
+
+    # 回归断言：colorbar 不得与任何场子图有像素级 bbox 交集
+    fig.canvas.draw()
+    for i in range(n):
+        cb_box = caxes[i].get_window_extent()
+        for j in range(6):
+            assert not cb_box.overlaps(axes[i, j].get_window_extent()), \
+                f"colorbar overlaps panel row={i} col={j}"
+
+    fig.savefig(FIGURES / "fig01_recon_panels.png", dpi=300, facecolor="white")
     fig.savefig(FIGURES / "fig01_recon_panels.pdf")
     plt.close(fig)
+    print("fig01 OK:", cases)
 
 
 def comparison_figure():
@@ -71,15 +96,34 @@ def comparison_figure():
         ax.bar(x + (k - 1.5) * width, sub["rel_l2_mean"], width,
                label=f"{METHOD_LABEL[method]} (ours)")
         ax.errorbar(x + (k - 1.5) * width, sub["rel_l2_mean"],
-                    yerr=sub["rel_l2_seedstd"].fillna(0), fmt="none", ecolor="k", lw=0.6)
+                    yerr=sub["rel_l2_seedstd"].fillna(0),
+                    fmt="none", ecolor="k", lw=0.6)
         if "paper_rel_l2" in sub:
-            ax.scatter(x + (k - 1.5) * width, sub["paper_rel_l2"], marker="_",
-                       s=60, color="k", zorder=5)
+            ax.scatter(x + (k - 1.5) * width, sub["paper_rel_l2"],
+                       marker="D", s=16, facecolors="none", edgecolors="k",
+                       linewidths=0.8, zorder=6)
     ax.set_xticks(x); ax.set_xticklabels(cases, rotation=20, ha="right")
-    ax.set_ylabel("relative L2")
+    ax.set_xlabel("test case")
     ax.set_yscale("log")
-    ax.legend(ncol=4, fontsize=6)
-    ax.set_title("ours (bars) vs paper (black ticks)")
+    # leave headroom above the tallest bar/diamond so the legend and the
+    # explanatory caption never cover data
+    upper = np.nanmax(np.maximum(
+        df["rel_l2_mean"].to_numpy() + df["rel_l2_seedstd"].fillna(0).to_numpy(),
+        df["paper_rel_l2"].to_numpy(),
+    ))
+    ax.set_ylim(top=float(upper) * 2.0)
+    ax.set_ylabel("relative L2")
+    ax.legend(ncol=2, fontsize=6, loc="upper right", framealpha=0.9)
+    ax.set_title("Reproduction vs paper (bars: ours; diamonds: paper)")
+    ax.text(
+        0.01, 0.985,
+        "bar: ours (mean over 3 seeds)\n"
+        "vertical line: ±1 seed std\n"
+        "black diamond: paper (N_ens=16)",
+        transform=ax.transAxes, va="top", ha="left", fontsize=7,
+        bbox=dict(facecolor="white", edgecolor="0.8", alpha=0.92,
+                  boxstyle="round,pad=0.25"),
+    )
     fig.tight_layout()
     fig.savefig(FIGURES / "fig02_rel_l2_vs_paper.png", dpi=300)
     fig.savefig(FIGURES / "fig02_rel_l2_vs_paper.pdf")

@@ -3,7 +3,7 @@
 # The Zenodo content endpoint supports GET Range (206); HEAD does not.
 set -euo pipefail
 
-WORK=.
+WORK="$(cd "$(dirname "$0")/../.." && pwd)"
 URL="https://zenodo.org/api/records/15742146/files/data.zip/content"
 TOTAL=9401260503
 CHUNK=67108864          # 64 MiB
@@ -27,7 +27,9 @@ dl_one() {
   rm -f "$out" "$out.part"
   local attempt
   for attempt in $(seq 1 8); do
-    if curl -x "$PROXY" -sSL --fail --retry 3 --retry-delay 2 --max-time 1800 \
+    local px=()
+    [ -n "$PROXY" ] && px=(-x "$PROXY")
+    if curl "${px[@]}" -sSL --fail --retry 3 --retry-delay 2 --max-time 1800 \
          --max-filesize $((want + 1024)) \
          --range "${start}-${end}" -o "$out.part" "$URL"; then
       if [ -f "$out.part" ] && [ "$(stat -c%s "$out.part")" -eq "$want" ]; then
@@ -45,7 +47,11 @@ dl_one() {
 export -f dl_one
 export URL TOTAL CHUNK DIR PROXY
 
-echo "[$(date)] downloading $N chunks with 32 workers via $PROXY"
+if [ -n "$PROXY" ]; then
+  echo "[$(date)] downloading $N chunks with 32 workers via proxy $PROXY"
+else
+  echo "[$(date)] downloading $N chunks with 32 workers (direct connection)"
+fi
 seq 0 $((N-1)) | xargs -P 32 -I{} bash -c 'dl_one {}'
 
 # Verify every chunk size before concatenation.

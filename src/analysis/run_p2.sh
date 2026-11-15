@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # P2: failure-mode analysis (after P1 partial-case runs exist).
 set -euo pipefail
-WORK=.
+WORK="$(cd "$(dirname "$0")/../.." && pwd)"
 PY="$WORK/venv/bin/python"
 
 for seed in 0 1 2; do

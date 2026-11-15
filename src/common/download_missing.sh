@@ -2,13 +2,13 @@
 # Low-concurrency resume for the remaining Zenodo chunks.
 # Zenodo returned 403 "unusual traffic" after the 32-way download; wait between
 # attempts and use only a few connections.  Run tomorrow:
-#   cd .
+#   cd qg-diffusion-repro
 #   bash src/common/download_missing.sh
-# For a direct connection instead of the proxy:
-#   PROXY= bash src/common/download_missing.sh
+# Optional proxy (default: direct connection):
+#   PROXY=http://host:port bash src/common/download_missing.sh
 set -uo pipefail
 
-WORK=.
+WORK="$(cd "$(dirname "$0")/../.." && pwd)"
 URL="https://zenodo.org/api/records/15742146/files/data.zip/content"
 TOTAL=9401260503
 CHUNK=67108864
@@ -19,14 +19,6 @@ DIR="$WORK/data/chunks"
 OUT="$WORK/data/data.zip"
 EXPECTED_MD5="0d4b3282cf8081aecb63efc0845a8405"
 mkdir -p "$DIR" "$WORK/results/p0"
-
-curl_cmd() {
-  if [ -n "$PROXY" ]; then
-    echo "curl -x $PROXY"
-  else
-    echo "curl"
-  fi
-}
 
 dl_one() {
   local i="$1"

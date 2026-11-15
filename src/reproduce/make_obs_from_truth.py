@@ -1,7 +1,7 @@
 """Build a ds16 observation from a truth frame with the paper's exact operator.
 
-This is used when the released ds16_* file is still in the undownloaded tail,
-and to test which observation the conditional model expects.
+This is used when the released ds16_* file is not present in the recovered ZIP
+subset, and to test which observation the conditional model expects.
 """
 from __future__ import annotations
 
@@ -15,8 +15,8 @@ import torch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-sys.path.insert(0, "third_party/qg-beta-sr")
-sys.path.insert(0, "third_party/qg-2d")
+sys.path.insert(0, str(ROOT.parent / "third_party" / "qg-beta-sr"))
+sys.path.insert(0, str(ROOT.parent / "third_party" / "qg-2d"))
 
 from common.config import DATA, TEST_SNAPSHOT, data_filename  # noqa: E402
 from Models.samplers import A_les_interleaved  # noqa: E402

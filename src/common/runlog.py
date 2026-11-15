@@ -11,6 +11,8 @@ from pathlib import Path
 
 import torch
 
+WORK = Path(__file__).resolve().parents[2]
+
 
 def _git_hash(path: Path) -> str:
     try:
@@ -43,9 +45,9 @@ def write_log(out_dir: Path, payload: dict):
     payload.setdefault("command", " ".join(sys.argv))
     payload.setdefault("env", environment())
     payload.setdefault("git", {
-        "qg_beta_sr": _git_hash(Path("third_party/qg-beta-sr")),
-        "qg_2d": _git_hash(Path("third_party/qg-2d")),
-        "ours": _git_hash(Path(".")),
+        "qg_beta_sr": _git_hash(WORK / "third_party" / "qg-beta-sr"),
+        "qg_2d": _git_hash(WORK / "third_party" / "qg-2d"),
+        "ours": _git_hash(WORK),
     })
     path = out_dir / "log.json"
     path.write_text(json.dumps(payload, indent=2, default=str))

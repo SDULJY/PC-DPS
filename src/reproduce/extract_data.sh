@@ -2,7 +2,7 @@
 # Extract only the 12 files needed for P1-P4 (4 truth + 4 ds16 full + 4 ds16 partial).
 set -euo pipefail
 
-WORK=.
+WORK="$(cd "$(dirname "$0")/../.." && pwd)"
 ZIP="$WORK/data/data.zip"
 OUT="$WORK/data"
 cd "$WORK"

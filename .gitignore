@@ -21,3 +21,8 @@ report/paper.txt
 # OS/editor
 .DS_Store
 .vscode/
+
+# internal handoff notes / raw download logs (not for publication)
+STATUS.md
+results/p0/download*.log
+results/p0/STATE.json

@@ -15,8 +15,8 @@ import matplotlib.pyplot as plt
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-sys.path.insert(0, "third_party/qg-beta-sr")
-sys.path.insert(0, "third_party/qg-2d")
+sys.path.insert(0, str(ROOT.parent / "third_party" / "qg-beta-sr"))
+sys.path.insert(0, str(ROOT.parent / "third_party" / "qg-2d"))
 
 from common.config import DATA, FIGURES, RESULTS, TEST_SNAPSHOT, data_filename  # noqa: E402
 from common.metrics import radial_enstrophy_spectrum  # noqa: E402

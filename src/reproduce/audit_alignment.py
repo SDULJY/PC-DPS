@@ -17,8 +17,8 @@ import torch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-sys.path.insert(0, "third_party/qg-beta-sr")
-sys.path.insert(0, "third_party/qg-2d")
+sys.path.insert(0, str(ROOT.parent / "third_party" / "qg-beta-sr"))
+sys.path.insert(0, str(ROOT.parent / "third_party" / "qg-2d"))
 
 from common.config import DATA, RESULTS, TEST_SNAPSHOT, TEST_RUN_INDEX, data_filename  # noqa: E402
 from common.metrics import relative_l2  # noqa: E402

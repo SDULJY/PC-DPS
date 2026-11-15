@@ -2,7 +2,7 @@
 # Identify the test run/snapshot used by the paper (config says run 3221,
 # min_t=101 + snapshot=81 -> pooled index 182 for a 0..195 time axis).
 set -euo pipefail
-WORK=.
+WORK="$(cd "$(dirname "$0")/../.." && pwd)"
 PY="$WORK/venv/bin/python"
 OUT="$WORK/results/p0/calibration"
 mkdir -p "$OUT"

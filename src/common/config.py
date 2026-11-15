@@ -6,7 +6,7 @@ records the same configuration.
 """
 from pathlib import Path
 
-WORK = Path(".")
+WORK = Path(__file__).resolve().parents[2]
 THIRD = WORK / "third_party"
 QG_SR = THIRD / "qg-beta-sr"
 QG2D = THIRD / "qg-2d"

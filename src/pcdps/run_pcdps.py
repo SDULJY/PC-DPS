@@ -13,8 +13,8 @@ import torch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-sys.path.insert(0, "third_party/qg-beta-sr")
-sys.path.insert(0, "third_party/qg-2d")
+sys.path.insert(0, str(ROOT.parent / "third_party" / "qg-beta-sr"))
+sys.path.insert(0, str(ROOT.parent / "third_party" / "qg-2d"))
 
 from common.config import (  # noqa: E402
     DATA, FIELD_STD, N_DIFF, N_CORR, CORR_SCALE, DPS_SCALE, DPS_C, DPS_SIGMA,
